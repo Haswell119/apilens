@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var PRO_URL = 'https://buy.stripe.com/eVqaEZ3Bm2LTdBG1TxgUM02';
+  var PRO_URL = null; // Pro not yet available — do not link a payment for a product that doesn't exist
   var hasChrome = typeof chrome !== 'undefined' && chrome.tabs && chrome.tabs.query;
   var currentUrl = '';
   var lastResponse = null;
@@ -22,7 +22,9 @@
   tabInspect.addEventListener('click', function () { show('inspect'); });
   tabPaste.addEventListener('click', function () { show('paste'); });
 
-  document.getElementById('pro-link').href = PRO_URL;
+  document.getElementById('pro-link').onclick = function () {
+    alert('APILens Pro is not available yet — core features remain free.');
+  };
 
   /* ---------- paste tab ---------- */
   var pasteInput = document.getElementById('paste-input');

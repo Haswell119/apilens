@@ -70,7 +70,7 @@ def make_icon(size):
     return px
 
 def main():
-    out_dir = os.path.join(os.path.dirname(__file__), '..', 'icons')
+    out_dir = os.path.join(os.path.dirname(__file__), '..', 'extension', 'icons')
     os.makedirs(out_dir, exist_ok=True)
     for size in (16, 48, 128):
         write_png(os.path.join(out_dir, 'icon%d.png' % size), size, make_icon(size))

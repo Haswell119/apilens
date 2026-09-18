@@ -40,12 +40,9 @@ ever add a feature you don't like, fork it.
 
 ## Pricing
 
-APILens is free for core use. **APILens Pro** ($4/mo or $29/yr) funds ongoing development
-and unlocks power features: large-file mode, JSONPath/jq queries, JSON diff, and saved
-snippets.
-
-- Monthly: https://buy.stripe.com/eVqaEZ3Bm2LTdBG1TxgUM02
-- Yearly: https://buy.stripe.com/6oU8wRb3OgCJapucybgUM03
+APILens is free for core use. **APILens Pro** (large-file mode, JSONPath/jq queries, JSON
+diff, saved snippets) is planned but **not available yet** — do not purchase it; the
+payment links have been deactivated until the features ship. Core features remain free.
 
 ## Privacy
 
