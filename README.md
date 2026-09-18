@@ -25,7 +25,7 @@ closed-source and started injecting ads.**
 ## Install
 
 **Manual (developer load):**
-1. Clone this repo.
+1. Clone this repo, or download `dist/apilens-v0.1.0.zip` and unzip it.
 2. Open `chrome://extensions`, enable **Developer mode**.
 3. Click **Load unpacked** and select the `extension/` folder.
 
@@ -55,7 +55,7 @@ snippets.
 
 ## License
 
-MIT. Built by [Meridian Digital](https://meridian.digital).
+MIT. Built by Meridian Digital (public brand of the maintainer of this repository).
 
 ## Project status
 
