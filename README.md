@@ -1,48 +1,50 @@
 # APILens — JSON, JWT & API inspector
 
-> Open-source, ad-free, **100% local** browser extension for inspecting API responses.
+> Open-source, ad-free, **local-first** tools for inspecting API responses.
 
 APILens auto-formats raw JSON/XML into a searchable, collapsible tree, decodes JWTs at a
-click, and copies any request as a cURL command. No account, no server, no analytics, no
-ads. Your data never leaves your machine.
+click, and copies any request as a cURL command. No account, no analytics, no ads.
 
 **Built as the clean, open-source alternative to the JSON-formatter extensions that went
 closed-source and started injecting ads.**
 
+## Try it now (no install)
+
+**[apilens-llau.onrender.com](https://apilens-llau.onrender.com)** — the web app, free.
+
+Paste JSON, XML, or a JWT and it formats instantly in your browser. Nothing is uploaded;
+everything runs client-side.
+
 ## Features
 
-- **Auto-format JSON & XML** — open a raw `.json`/`.xml` endpoint and it renders as a
-  syntax-highlighted, collapsible tree with search.
-- **One-click JWT decode** — any JWT string in the tree (or pasted) expands into its
-  header, payload claims, and signature. No more copy-pasting into jwt.io.
-- **Inspect any tab** — click the icon to fetch the current URL, see status + content-type +
-  size + timing, and format the response.
+### Free (web + extension)
+
+- **Format & minify JSON/XML** — auto-detects and renders a syntax-highlighted,
+  collapsible tree with search.
+- **One-click JWT decode** — any JWT expands into header, payload claims, and signature.
 - **Copy as cURL** — export the current request as a ready-to-run `curl` command.
-- **Response headers** — list every response header for quick debugging.
-- **Zero tracking** — everything runs locally in the browser. The only network calls are
-  the ones you trigger against the APIs you're inspecting.
+- **Zero tracking** — everything runs locally. No analytics, no telemetry.
 
-## Install
+### Pro (web, $19 one-time lifetime)
 
-**Manual (developer load):**
+- **JSONPath query** — extract exactly what you need (`$.store.book[?(@.price < 10)].title`).
+- **JSON diff** — compare two documents and see every added / removed / changed path.
+- **Large-file mode** — raise the cap from 20k nodes / 2 MB to 200k nodes / 20 MB.
+- **Lifetime license** — one purchase, delivered instantly, no subscription.
+
+## Install (extension, manual developer load)
+
 1. Clone this repo, or download `dist/apilens-v0.1.0.zip` and unzip it.
 2. Open `chrome://extensions`, enable **Developer mode**.
 3. Click **Load unpacked** and select the `extension/` folder.
 
-APILens is distributed open-source via GitHub (this repo). A Chrome Web Store listing is
-not yet published.
+A Chrome Web Store listing is not yet published; the web app (above) needs no install.
 
 ## Why open source?
 
 The most-installed JSON formatter (2M+ users, 4.5★) went closed-source in 2025 and began
 injecting ads. APILens is the opposite: MIT-licensed, readable, and local-first. If we
-ever add a feature you don't like, fork it.
-
-## Pricing
-
-APILens is free for core use. **APILens Pro** (large-file mode, JSONPath/jq queries, JSON
-diff, saved snippets) is planned but **not available yet** — do not purchase it; the
-payment links have been deactivated until the features ship. Core features remain free.
+add a feature you don't like, fork it.
 
 ## Privacy
 
@@ -50,11 +52,17 @@ payment links have been deactivated until the features ship. Core features remai
 - Inspected responses are rendered in-page and never uploaded anywhere.
 - Source is fully open so you can verify both claims.
 
+## Repo layout
+
+- `web/` — the web app (static frontend + stdlib-only Python backend with Stripe license
+  delivery).
+- `extension/` — the MV3 Chrome extension.
+- `scripts/` — tests and deploy tooling.
+
 ## License
 
-MIT. Built by Meridian Digital (public brand of the maintainer of this repository).
+MIT. Built by **Meridian Digital**.
 
 ## Project status
 
-v0.1.0 — free core shipped. Pro features (large-file mode, JSONPath, diff, snippets)
-landing next.
+v0.2.0 — web app live and monetized (free + $19 lifetime Pro). Extension shipped open-source.

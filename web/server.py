@@ -150,7 +150,7 @@ class Handler(BaseHTTPRequestHandler):
         except OSError:
             return self._json(404, {"error": "not found"})
         ct = ctype or MIME.get(posixpath.splitext(rel)[1], "application/octet-stream")
-        if ct.startswith("text/") or ct == "application/javascript":
+        if (ct.startswith("text/") or ct == "application/javascript") and "; charset" not in ct:
             ct += "; charset=utf-8"
         self._send(200, data, ct)
 
