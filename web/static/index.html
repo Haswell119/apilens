@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APILens — JSON, JWT & API inspector</title>
+  <meta name="description" content="Open-source, ad-free JSON / XML / JWT inspector. Format, search, decode JWTs, query with JSONPath, diff two documents. No tracking, no account.">
+  <link rel="icon" href="/static/icons/icon48.png">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <span id="pro-status" class="pro-status free">Free</span>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>The JSON formatter that doesn't sell your eyeballs.</h1>
+    <p class="sub">Format, search and diff JSON/XML, decode JWTs, and query with JSONPath —
+      <strong>100% in your browser</strong>. No ads, no tracking, no account, MIT-licensed.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#tool">Try it free</a>
+      <a class="btn ghost" href="#pricing">Pro features</a>
+    </div>
+  </section>
+
+  <section id="tool" class="tool">
+    <div class="pane input-pane">
+      <div class="pane-head">
+        <span>Input</span>
+        <span class="pane-actions">
+          <button id="btn-sample" class="mini">Sample</button>
+          <button id="btn-clear" class="mini">Clear</button>
+        </span>
+      </div>
+      <textarea id="input" spellcheck="false" placeholder="Paste JSON, XML, or a JWT…"></textarea>
+      <div class="toolbar">
+        <button id="btn-format" class="btn primary">Format</button>
+        <button id="btn-minify" class="btn">Minify</button>
+        <button id="btn-copy" class="btn">Copy</button>
+        <span class="meta" id="meta"></span>
+      </div>
+    </div>
+
+    <div class="pane output-pane">
+      <div class="pane-head"><span>Output</span></div>
+      <div id="output" class="output"><div class="empty">Formatted output appears here.</div></div>
+    </div>
+  </section>
+
+  <section class="pro-tools">
+    <h2>Pro tools</h2>
+    <div class="pro-grid">
+      <div class="pro-card" id="card-jsonpath">
+        <h3>JSONPath query</h3>
+        <p>Extract exactly what you need: <code>$.store.book[*].title</code></p>
+        <div class="row">
+          <input id="jsonpath-input" placeholder="$.store.book[?(@.price &lt; 10)].title" disabled>
+          <button id="btn-jsonpath" class="btn" disabled>Run</button>
+        </div>
+        <div id="jsonpath-out" class="sub-out"></div>
+      </div>
+      <div class="pro-card" id="card-diff">
+        <h3>JSON diff</h3>
+        <p>Compare two documents and see exactly what changed.</p>
+        <div class="diff-inputs">
+          <textarea id="diff-a" placeholder="Original JSON…" disabled></textarea>
+          <textarea id="diff-b" placeholder="New JSON…" disabled></textarea>
+        </div>
+        <button id="btn-diff" class="btn" disabled>Diff</button>
+        <div id="diff-out" class="sub-out"></div>
+      </div>
+      <div class="pro-card" id="card-large">
+        <h3>Large-file mode</h3>
+        <p>Free is capped at 20k nodes / ~2 MB. Pro raises it to 200k nodes / 20 MB.</p>
+        <div id="large-status" class="sub-out">Included with Pro.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing-grid">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="price">$0</div>
+        <ul>
+          <li>Format &amp; minify JSON/XML</li>
+          <li>Tree view + search</li>
+          <li>One-click JWT decode</li>
+          <li>Up to 20k nodes / ~2 MB</li>
+        </ul>
+        <div class="plan-foot">No account. No tracking.</div>
+      </div>
+      <div class="plan featured">
+        <h3>Pro <span class="lifetime">lifetime</span></h3>
+        <div class="price">$19 <span class="once">one-time</span></div>
+        <ul>
+          <li>Everything in Free</li>
+          <li>JSONPath query</li>
+          <li>JSON diff (two documents)</li>
+          <li>Large-file mode (200k nodes / 20 MB)</li>
+          <li>Lifetime license, one purchase</li>
+        </ul>
+        <button id="btn-buy" class="btn primary big">Buy Pro — $19</button>
+        <div class="plan-foot" id="buy-note">License key delivered instantly after payment.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="license">
+    <h3>Already have a license?</h3>
+    <div class="row">
+      <input id="license-input" placeholder="APL-…">
+      <button id="btn-license" class="btn">Activate</button>
+    </div>
+    <div id="license-status" class="sub-out"></div>
+  </section>
+
+  <footer>
+    <p>100% local · no analytics · no ads · <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> · Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+
+  <script src="/static/formatter.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

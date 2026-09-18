@@ -1,0 +1,2 @@
+# APILens Web is stdlib-only (no third-party Python dependencies).
+# Stripe calls use urllib; the server uses http.server.

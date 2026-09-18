@@ -1,0 +1,22 @@
+# Render Blueprint for APILens Web (stdlib-only Python service).
+services:
+  - type: web
+    name: apilens
+    runtime: python
+    plan: free
+    region: frankfurt
+    rootDir: web
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python server.py"
+    healthCheckPath: /
+    envVars:
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: LICENSE_SECRET
+        generateValue: true
+      - key: PRICE_ID
+        value: price_1UH4w4POfVvcTOq27WiTEOwv
+      - key: APP_URL
+        value: https://apilens.onrender.com
+      - key: PYTHON_VERSION
+        value: 3.13.5
