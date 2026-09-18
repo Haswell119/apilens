@@ -24,12 +24,13 @@ closed-source and started injecting ads.**
 
 ## Install
 
-**Chrome Web Store** — coming soon (first release under review).
-
 **Manual (developer load):**
 1. Clone this repo.
 2. Open `chrome://extensions`, enable **Developer mode**.
 3. Click **Load unpacked** and select the `extension/` folder.
+
+APILens is distributed open-source via GitHub (this repo). A Chrome Web Store listing is
+not yet published.
 
 ## Why open source?
 
