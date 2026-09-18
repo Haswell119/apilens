@@ -17,6 +17,7 @@ import hmac
 import json
 import os
 import posixpath
+import re
 import urllib.parse
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -132,6 +133,12 @@ class Handler(BaseHTTPRequestHandler):
             if ".." in rel or rel.startswith("/"):
                 return self._json(400, {"error": "bad path"})
             return self._serve_file(rel)
+        if path == "/robots.txt":
+            return self._serve_file("robots.txt", "text/plain")
+        if path == "/sitemap.xml":
+            return self._serve_file("sitemap.xml", "application/xml")
+        if re.fullmatch(r"/[0-9a-f]{32}\.txt", path):
+            return self._serve_file(path.lstrip("/"), "text/plain")
         return self._json(404, {"error": "not found"})
 
     def do_POST(self):
