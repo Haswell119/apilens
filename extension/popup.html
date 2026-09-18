@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+  <title>APILens</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">APILens</div>
+    <div class="tabs">
+      <button id="tab-inspect" class="tab active">Inspect tab</button>
+      <button id="tab-paste" class="tab">Paste</button>
+    </div>
+  </header>
+
+  <div id="view-inspect" class="view">
+    <div class="inspect-bar">
+      <span id="inspect-url" class="url">—</span>
+      <button id="btn-curl" class="ghost" title="Copy current URL as a cURL command">cURL</button>
+      <button id="btn-headers" class="ghost" title="Show response headers">Headers</button>
+      <button id="btn-fetch" class="primary">Fetch</button>
+    </div>
+    <div id="inspect-meta" class="meta">Click Fetch to inspect the current tab.</div>
+    <div id="inspect-out" class="out"></div>
+  </div>
+
+  <div id="view-paste" class="view" hidden>
+    <textarea id="paste-input" placeholder="Paste JSON, XML, or a JWT…"></textarea>
+    <div class="paste-actions">
+      <button id="btn-format" class="primary">Format</button>
+      <span class="hint">JSON · XML · JWT auto-detected</span>
+    </div>
+    <div id="paste-out" class="out"></div>
+  </div>
+
+  <footer class="footbar">
+    <span class="tagline">100% local · no tracking · open source</span>
+    <a id="pro-link" href="#" target="_blank" class="pro">Get Pro</a>
+  </footer>
+
+  <script src="formatter.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

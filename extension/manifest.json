@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "APILens — JSON, JWT & API inspector",
+  "version": "0.1.0",
+  "description": "Open-source, ad-free, 100% local API response inspector. Auto-formats JSON/XML, decodes JWTs, and copies any request as cURL. No tracking.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "APILens",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "file:///*"],
+      "js": ["formatter.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["storage"],
+  "host_permissions": ["http://*/*", "https://*/*"]
+}
