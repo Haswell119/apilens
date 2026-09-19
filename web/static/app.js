@@ -36,11 +36,9 @@
   }
 
   function enableProUI(on) {
-    var cards = ['card-jsonpath', 'card-diff', 'card-large'];
-    cards.forEach(function (id) { $(id).classList.toggle('locked', !on); });
-    ['jsonpath-input', 'btn-jsonpath', 'diff-a', 'diff-b', 'btn-diff'].forEach(function (id) {
-      $(id).disabled = !on;
-    });
+    // JSONPath + JSON diff are free (competitive parity — rivals give them away).
+    // Only large-file mode is gated behind Pro.
+    $('card-large').classList.toggle('locked', !on);
     $('large-status').textContent = on
       ? 'Large-file mode active (200k nodes / 20 MB).'
       : 'Included with Pro — up to 200k nodes / 20 MB.';

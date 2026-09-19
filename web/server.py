@@ -32,6 +32,13 @@ PRICE_ID = os.environ.get("PRICE_ID", "")
 
 PLAN = "pro-lifetime"
 
+# Dedicated SEO landing pages (keyword-targeted, each embeds its own working tool).
+PAGES = {
+    "/jwt-decoder": "jwt-decoder.html",
+    "/json-diff": "json-diff.html",
+    "/jsonpath": "jsonpath.html",
+}
+
 
 # ---------- Stripe (stdlib urllib) ----------
 
@@ -124,6 +131,8 @@ class Handler(BaseHTTPRequestHandler):
         path = urllib.parse.urlparse(self.path).path
         if path == "/":
             return self._serve_file("index.html", "text/html; charset=utf-8")
+        if path in PAGES:
+            return self._serve_file(PAGES[path], "text/html; charset=utf-8")
         if path == "/api/unlock":
             return self.handle_unlock()
         if path == "/api/verify":

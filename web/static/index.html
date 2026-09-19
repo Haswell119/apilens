@@ -51,6 +51,12 @@
     <h1>The JSON formatter that doesn't sell your eyeballs.</h1>
     <p class="sub">Format, search and diff JSON/XML, decode JWTs, and query with JSONPath —
       <strong>100% in your browser</strong>. No ads, no tracking, no account, MIT-licensed.</p>
+    <div class="toolnav" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px;">
+      <a href="/" class="mini" style="text-decoration:none;color:var(--accent);border-color:var(--accent);">JSON formatter</a>
+      <a href="/jwt-decoder" class="mini" style="text-decoration:none;">JWT decoder</a>
+      <a href="/json-diff" class="mini" style="text-decoration:none;">JSON diff</a>
+      <a href="/jsonpath" class="mini" style="text-decoration:none;">JSONPath tester</a>
+    </div>
     <div class="hero-actions">
       <a class="btn primary" href="#tool">Try it free</a>
       <a class="btn ghost" href="#pricing">Pro features</a>
@@ -82,14 +88,14 @@
   </section>
 
   <section class="pro-tools">
-    <h2>Pro tools</h2>
+    <h2>More tools</h2>
     <div class="pro-grid">
       <div class="pro-card" id="card-jsonpath">
         <h3>JSONPath query</h3>
         <p>Extract exactly what you need: <code>$.store.book[*].title</code></p>
         <div class="row">
-          <input id="jsonpath-input" placeholder="$.store.book[?(@.price &lt; 10)].title" disabled>
-          <button id="btn-jsonpath" class="btn" disabled>Run</button>
+          <input id="jsonpath-input" placeholder="$.store.book[?(@.price &lt; 10)].title">
+          <button id="btn-jsonpath" class="btn">Run</button>
         </div>
         <div id="jsonpath-out" class="sub-out"></div>
       </div>
@@ -97,14 +103,14 @@
         <h3>JSON diff</h3>
         <p>Compare two documents and see exactly what changed.</p>
         <div class="diff-inputs">
-          <textarea id="diff-a" placeholder="Original JSON…" disabled></textarea>
-          <textarea id="diff-b" placeholder="New JSON…" disabled></textarea>
+          <textarea id="diff-a" placeholder="Original JSON…"></textarea>
+          <textarea id="diff-b" placeholder="New JSON…"></textarea>
         </div>
-        <button id="btn-diff" class="btn" disabled>Diff</button>
+        <button id="btn-diff" class="btn">Diff</button>
         <div id="diff-out" class="sub-out"></div>
       </div>
       <div class="pro-card" id="card-large">
-        <h3>Large-file mode</h3>
+        <h3>Large-file mode <span class="lifetime">Pro</span></h3>
         <p>Free is capped at 20k nodes / ~2 MB. Pro raises it to 200k nodes / 20 MB.</p>
         <div id="large-status" class="sub-out">Included with Pro.</div>
       </div>
@@ -121,6 +127,8 @@
           <li>Format &amp; minify JSON/XML</li>
           <li>Tree view + search</li>
           <li>One-click JWT decode</li>
+          <li>JSONPath query</li>
+          <li>JSON diff (two documents)</li>
           <li>Up to 20k nodes / ~2 MB</li>
         </ul>
         <div class="plan-foot">No account. No tracking.</div>
@@ -130,10 +138,9 @@
         <div class="price">$19 <span class="once">one-time</span></div>
         <ul>
           <li>Everything in Free</li>
-          <li>JSONPath query</li>
-          <li>JSON diff (two documents)</li>
           <li>Large-file mode (200k nodes / 20 MB)</li>
           <li>Lifetime license, one purchase</li>
+          <li>Funds this open-source project</li>
         </ul>
         <button id="btn-buy" class="btn primary big">Buy Pro — $19</button>
         <div class="plan-foot" id="buy-note">License key delivered instantly after payment.</div>
@@ -171,7 +178,7 @@
       </div>
       <div class="faq-item">
         <h3>How do I diff two JSON documents?</h3>
-        <p>Paste the original and the new JSON into the two diff boxes and click Diff. APILens lists every added, removed, and changed path. JSON diff and JSONPath query are Pro features ($19 lifetime).</p>
+        <p>Paste the original and the new JSON into the two diff boxes and click Diff. APILens lists every added, removed, and changed path. JSON diff and JSONPath query are free — try them on the dedicated <a href="/json-diff">JSON diff</a> and <a href="/jsonpath">JSONPath tester</a> pages.</p>
       </div>
       <div class="faq-item">
         <h3>How do I decode a JWT?</h3>

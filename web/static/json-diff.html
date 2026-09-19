@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON Diff — Compare Two JSON Documents Online | APILens</title>
+  <meta name="description" content="Free online JSON diff. Paste two JSON documents and see exactly what was added, removed and changed, with the full path of every difference. Structural compare that ignores key order and whitespace. 100% in your browser.">
+  <link rel="canonical" href="https://apilens-llau.onrender.com/json-diff">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="JSON Diff — Compare Two JSON Documents Online">
+  <meta property="og:description" content="Free, private JSON diff that lists every added, removed and changed path. Runs entirely in your browser.">
+  <meta property="og:url" content="https://apilens-llau.onrender.com/json-diff">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JSON Diff — Compare Two JSON Documents Online">
+  <meta name="twitter:description" content="Free, private, ad-free JSON diff. Compare two documents path by path.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens JSON Diff",
+    "url": "https://apilens-llau.onrender.com/json-diff",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Free online JSON diff that compares two JSON documents structurally and lists added, removed and changed paths, entirely in the browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/static/icons/icon48.png">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .diff-tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .diff-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+    @media (max-width: 640px) { .diff-inputs { grid-template-columns: 1fr; } }
+    .diff-inputs textarea { min-height: 160px; }
+    .diff-inputs .lab { color: var(--muted); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .diff-bar { display: flex; gap: 8px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .diff-bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 100px; }
+    .out .empty { color: var(--muted); }
+    .diff-line { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; padding: 1px 0; word-break: break-word; }
+    .diff-line.added { color: var(--accent2); }
+    .diff-line.removed { color: var(--danger); }
+    .diff-line.changed { color: var(--warn); }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .faq-item code { color: var(--accent); }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/">Full tool ↗</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
+
+  <div class="page">
+    <nav class="toolnav" aria-label="Tools">
+      <a href="/">JSON formatter</a>
+      <a href="/jwt-decoder">JWT decoder</a>
+      <a href="/json-diff" class="active">JSON diff</a>
+      <a href="/jsonpath">JSONPath</a>
+    </nav>
+
+    <h1>JSON Diff — compare two JSON documents</h1>
+    <p class="lede">Paste an original and a new JSON document to see exactly what changed. APILens compares them <strong>structurally</strong> — key order and whitespace don't matter — and lists every <strong>added</strong>, <strong>removed</strong> and <strong>changed</strong> path. Everything runs in your browser; nothing is uploaded.</p>
+
+    <div class="diff-tool">
+      <div class="diff-inputs">
+        <div>
+          <div class="lab">Original JSON</div>
+          <textarea id="diff-a" spellcheck="false" placeholder='{ "name": "x", "items": [1, 2, 3] }'></textarea>
+        </div>
+        <div>
+          <div class="lab">New JSON</div>
+          <textarea id="diff-b" spellcheck="false" placeholder='{ "name": "y", "items": [1, 2] }'></textarea>
+        </div>
+      </div>
+      <div class="diff-bar">
+        <button id="btn-diff" class="btn primary">Compare</button>
+        <button id="btn-sample" class="btn">Sample</button>
+        <button id="btn-clear" class="btn">Clear</button>
+        <span class="meta" id="meta"></span>
+      </div>
+      <div class="out" id="out"><div class="empty">Differences appear here as path-tagged lines.</div></div>
+    </div>
+
+    <div class="section">
+      <h2>JSON diff — frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Is this a text diff or a JSON diff?</h3>
+          <p>A JSON diff. Both sides are parsed into structured values and compared by path, so reordered keys, different indentation and trailing commas do not show up as changes — unlike a character-level text diff.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does my JSON leave my browser?</h3>
+          <p>No. Comparison runs 100% client-side. Nothing is uploaded, logged or tracked — which matters when you're diffing API payloads or config that may contain secrets.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What do added, removed and changed mean?</h3>
+          <p><strong>Added</strong> = a value exists only in the new document. <strong>Removed</strong> = only in the original. <strong>Changed</strong> = the same path has a different value (or a different type) on each side.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does it handle nested objects and arrays?</h3>
+          <p>Yes. The comparison walks both trees in parallel and reports the full path of every difference — e.g. <code>users[2].email</code> — including array insertions and removals by index.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What if the documents are identical?</h3>
+          <p>The tool reports that they are identical. Useful for confirming a refactor or a config change produced no functional difference.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Are there limits?</h3>
+          <p>The free tier handles documents up to ~2 MB. For very large payloads (up to 20 MB), <a href="/#pricing">APILens Pro</a> ($19 lifetime) unlocks large-file mode — it also funds this open-source project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>100% local · no analytics · no ads · <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> · Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+
+  <script src="/static/formatter.js"></script>
+  <script src="/static/tools.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var a = $('diff-a'), b = $('diff-b'), out = $('out'), meta = $('meta');
+
+      function run() {
+        out.innerHTML = '';
+        meta.textContent = '';
+        var ta, tb;
+        try { ta = JSON.parse(a.value); } catch (e) { out.appendChild(APILens.el('div', 'empty', 'Original is not valid JSON: ' + e.message)); return; }
+        try { tb = JSON.parse(b.value); } catch (e) { out.appendChild(APILens.el('div', 'empty', 'New is not valid JSON: ' + e.message)); return; }
+        var ops = APILensTools.diff(ta, tb);
+        if (!ops.length) { out.appendChild(APILens.el('div', 'empty', 'Documents are identical — no differences.')); meta.textContent = 'identical'; return; }
+        ops.slice(0, 300).forEach(function (op) {
+          var line = document.createElement('div');
+          line.className = 'diff-line ' + op.type;
+          var val = op.val !== undefined ? JSON.stringify(op.val) : JSON.stringify(op.old);
+          if (val.length > 140) val = val.slice(0, 140) + '…';
+          line.textContent = (op.type === 'added' ? '+ ' : op.type === 'removed' ? '− ' : '~ ') + op.path + '  ' + val;
+          out.appendChild(line);
+        });
+        var n = ops.length;
+        if (n > 300) {
+          out.appendChild(APILens.el('div', 'diff-line changed', '…and ' + (n - 300) + ' more changes.'));
+        }
+        meta.textContent = n + ' difference(s)';
+      }
+
+      function sample() {
+        a.value = JSON.stringify({
+          name: 'x', age: 1, items: [1, 2, 3, 9],
+          nested: { keep: true, drop: 'bye' },
+          user: { id: 1, email: 'ada@example.com' }
+        }, null, 2);
+        b.value = JSON.stringify({
+          name: 'y', age: 1, items: [1, 2, 3],
+          nested: { keep: true, added: 'hi' },
+          user: { id: 1, email: 'ada@example.com', role: 'admin' }
+        }, null, 2);
+        run();
+      }
+
+      $('btn-diff').addEventListener('click', run);
+      $('btn-sample').addEventListener('click', sample);
+      $('btn-clear').addEventListener('click', function () { a.value = ''; b.value = ''; out.innerHTML = ''; meta.textContent = ''; });
+    })();
+  </script>
+</body>
+</html>
