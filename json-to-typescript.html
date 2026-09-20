@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON to TypeScript Interface Generator — Free Online | APILens</title>
+  <meta name="description" content="Free JSON to TypeScript converter. Paste a JSON object or an API response and get typed interfaces, nested types, optional fields and union types. Runs 100% in your browser.">
+  <link rel="canonical" href="https://haswell119.github.io/apilens/json-to-typescript">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="JSON to TypeScript Interface Generator — Free Online | APILens">
+  <meta property="og:description" content="Free JSON to TypeScript converter. Paste a JSON object or an API response and get typed interfaces, nested types, optional fields and union types. Runs 100% in your browser.">
+  <meta property="og:url" content="https://haswell119.github.io/apilens/json-to-typescript">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JSON to TypeScript Interface Generator — Free Online | APILens">
+  <meta name="twitter:description" content="Free JSON to TypeScript converter. Paste a JSON object or an API response and get typed interfaces, nested types, optional fields and union types. Runs 100% in your browser.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens JSON to TypeScript Generator",
+    "url": "https://haswell119.github.io/apilens/json-to-typescript",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Free JSON to TypeScript converter. Paste a JSON object or an API response and get typed interfaces, nested types, optional fields and union types. Runs 100% in your browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/apilens/static/icons/icon48.png">
+  <link rel="stylesheet" href="/apilens/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .tool-panes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+    @media (max-width: 700px) { .tool-panes { grid-template-columns: 1fr; } }
+    .tool .lab { color: var(--muted); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .tool textarea { min-height: 220px; }
+    .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 120px; }
+    .out .empty { color: var(--muted); }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .procta { margin-top: 32px; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 20px 22px; }
+    .procta h2 { font-size: 19px; margin: 0 0 8px; }
+    .procta p { color: var(--muted); font-size: 15px; margin: 0 0 14px; }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    .page pre, .out pre { margin: 0; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; white-space: pre; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/apilens/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/apilens/">Full tool &#8599;</a>
+      <a class="gh-link" href="/apilens/#pricing">Pro &#8212; $19 once</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </header>
+
+  <div class="page">
+<nav class="toolnav" aria-label="Tools">
+      <a href="/apilens/">JSON formatter</a>
+      <a href="/apilens/json-validator">JSON validator</a>
+      <a href="/apilens/jwt-decoder">JWT decoder</a>
+      <a href="/apilens/json-diff">JSON diff</a>
+      <a href="/apilens/jsonpath">JSONPath tester</a>
+      <a href="/apilens/xml-formatter">XML formatter</a>
+      <a href="/apilens/json-to-csv">JSON to CSV</a>
+      <a href="/apilens/xml-to-json">XML to JSON</a>
+      <a href="/apilens/json-to-yaml">JSON to YAML</a>
+      <a href="/apilens/json-to-typescript">JSON to TypeScript</a>
+      <a href="/apilens/base64-encoder">Base64 encode / decode</a>
+      <a href="/apilens/unix-timestamp-converter">Unix timestamp converter</a>
+    </nav>
+
+    <h1>JSON to TypeScript Interface Generator — Free Online | APILens</h1>
+    <p class="lede">Turn a JSON payload into TypeScript interfaces. Nested objects become their own named types, arrays of objects are merged into one interface with optional fields for keys that are not always present, and nulls produce unions. Runs locally &mdash; nothing is uploaded.</p>
+
+    <div class="tool">
+      <div class="tool-panes">
+        <div>
+          <div class="lab">JSON input</div>
+          <textarea id="json-in" spellcheck="false" placeholder='{
+  "id": 1,
+  "email": "ada@example.com",
+  "role": null,
+  "tags": ["a", "b"],
+  "profile": { "city": "London", "verified": true },
+  "orders": [ { "id": 10, "total": 9.5 }, { "id": 11, "total": 4 } ]
+}'></textarea>
+        </div>
+        <div>
+          <div class="lab">TypeScript output</div>
+          <div class="out" id="ts-out"><div class="empty">Generated interfaces appear here.</div></div>
+        </div>
+      </div>
+      <div class="bar">
+        <button id="btn-convert" class="btn primary">Generate TypeScript</button>
+        <input id="root-name" class="btn" style="width:130px;padding:6px 10px;" value="Root" aria-label="Root interface name">
+        <select id="style" class="btn" style="padding:6px 10px;">
+          <option value="interface" selected>interface</option>
+          <option value="type">type alias</option>
+        </select>
+        <button id="btn-sample" class="btn">Sample</button>
+        <button id="btn-copy" class="btn">Copy</button>
+        <span class="meta" id="meta"></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>What the generator does with your data</h2>
+      <table>
+        <tr><th>Situation</th><th>Generated TypeScript</th></tr>
+        <tr><td>Nested objects</td><td>Each becomes its own named interface (<code>Profile</code>, <code>Order</code>)</td></tr>
+        <tr><td>Arrays of objects</td><td>All elements merged into one interface; keys missing from some elements become optional (<code>?</code>)</td></tr>
+        <tr><td>Arrays of scalars</td><td><code>string[]</code>, <code>number[]</code>, or a union for mixed arrays</td></tr>
+        <tr><td><code>null</code> values</td><td>Union with <code>null</code> &mdash; or <code>unknown</code> when the field is null everywhere</td></tr>
+        <tr><td>Keys with dashes or spaces</td><td>Quoted property names: <code>"x-request-id": string</code></td></tr>
+        <tr><td>Empty arrays / objects</td><td><code>unknown[]</code> and <code>Record&lt;string, unknown&gt;</code></td></tr>
+      </table>
+      <p style="color:var(--muted);font-size:14px;">A single sample can only describe the shapes it contains. Merge two or three real responses through the tool if your API is polymorphic &mdash; or diff them first with the <a href="/apilens/json-diff">JSON diff</a> to see what varies.</p>
+    </div>
+
+    <div class="section">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Does my JSON get uploaded?</h3>
+          <p>No. Type inference and code generation run in JavaScript in this tab. Nothing is sent anywhere &mdash; safe for API responses containing tokens, emails or customer records.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How are optional fields detected?</h3>
+          <p>Only within arrays: if one object in an array has a key and another does not, that key is marked optional with <code>?</code>. Across separate documents, run each one and merge the interfaces &mdash; a single payload cannot tell you what is optional in the schema.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Are nested objects inlined or named?</h3>
+          <p>Named. Each nested object becomes its own interface, which is what you want for reusability, and matches how most teams write API types by hand. Arrays of objects reuse the singular name where the key is plural (<code>orders</code> &rarr; <code>Order</code>).</p>
+        </div>
+        <div class="faq-item">
+          <h3>What about <code>null</code> and mixed types?</h3>
+          <p><code>null</code> produces a union such as <code>string | null</code>. Fields that are null in every sample become <code>unknown</code> rather than a wrong guess. Mixed arrays produce a union of the element types.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I generate <code>type</code> aliases instead of interfaces?</h3>
+          <p>Yes &mdash; switch the selector to <code>type</code>. Everything else in the output is identical, including nested types.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is there a size limit?</h3>
+          <p>The free tier handles payloads up to roughly 2 MB. APILens Pro raises it to 20 MB and adds large-file mode.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="procta">
+      <h2>APILens Pro &mdash; $19 once, no subscription</h2>
+      <p>Large-file mode up to 20 MB, JSONPath query and diff on bigger documents, and it keeps this tool ad-free, tracker-free and open source.</p>
+      <a class="btn primary" href="/apilens/#pricing">See what Pro adds</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>100% local &#183; no analytics &#183; no ads &#183; <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> &#183; Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+  <script src="/apilens/static/formatter.js"></script>
+  <script src="/apilens/static/tools.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var out = $('ts-out'), meta = $('meta'), last = '';
+
+      function pascal(s) {
+        var parts = String(s).replace(/[^A-Za-z0-9]+/g, ' ').trim().split(/\s+/);
+        var r = parts.map(function (p) { return p.charAt(0).toUpperCase() + p.slice(1); }).join('');
+        if (!r) r = 'Value';
+        if (/^[0-9]/.test(r)) r = 'T' + r;
+        return r;
+      }
+      function singular(s) { return /ies$/.test(s) ? s.slice(0, -3) + 'y' : /s$/.test(s) && !/ss$/.test(s) ? s.slice(0, -1) : s; }
+      function keyLit(k) { return /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(k) ? k : JSON.stringify(k); }
+      function jsType(v) {
+        if (v === null) return 'null';
+        if (Array.isArray(v)) return 'unknown[]';
+        switch (typeof v) {
+          case 'string': return 'string';
+          case 'number': return 'number';
+          case 'boolean': return 'boolean';
+          case 'object': return 'Record<string, unknown>';
+          default: return 'unknown';
+        }
+      }
+      function uniq(a) { var o = [], i; for (i = 0; i < a.length; i++) if (o.indexOf(a[i]) === -1) o.push(a[i]); return o; }
+
+      function infer(v, name, types, used) {
+        var tname = pascal(name);
+        var base = tname, n = 2;
+        while (used[tname]) { tname = base + n++; }
+        used[tname] = true;
+
+        if (Array.isArray(v)) {
+          var elemName = singular(name);
+          var allObj = v.length > 0 && v.every(function (x) { return x && typeof x === 'object' && !Array.isArray(x); });
+          if (allObj) {
+            var singularName = pascal(singular(name));
+            if (singularName !== tname) {
+              used[tname] = false;
+              tname = singularName;
+              var bn = tname, nn = 2;
+              while (used[tname]) { tname = bn + nn++; }
+              used[tname] = true;
+            }
+            var merged = {}, counts = {};
+            v.forEach(function (o) {
+              Object.keys(o).forEach(function (k) {
+                counts[k] = (counts[k] || 0) + 1;
+                if (!(k in merged)) merged[k] = [];
+                merged[k].push(o[k]);
+              });
+            });
+            var fields = [];
+            Object.keys(merged).forEach(function (k) {
+              var vals = merged[k];
+              var opt = counts[k] < v.length;
+              var nonNull = vals.filter(function (x) { return x !== null; });
+              var t;
+              if (!nonNull.length) { t = 'unknown'; }
+              else if (nonNull.every(function (x) { return typeof x === 'object' && !Array.isArray(x); })) {
+                var sub = pascal(singular(k));
+                var ref = infer(nonNull, sub, types, used);
+                t = ref.name + '[]';
+                if (vals.length !== nonNull.length) t = '(' + ref.name + ' | null)[]';
+              } else {
+                var hasArr = nonNull.some(function (x) { return Array.isArray(x); });
+                t = uniq(nonNull.map(jsType)).join(' | ');
+                if (hasArr && t.indexOf('[]') < 0) t += '[]';
+              }
+              fields.push({ key: k, type: t, opt: opt });
+            });
+            if (!fields.length) { used[tname] = false; return { inline: 'Record<string, unknown>[]' }; }
+            types.push({ name: tname, fields: fields });
+            return { name: tname };
+          }
+          var scalars = v.filter(function (x) { return x === null || typeof x !== 'object'; });
+          var t2 = v.length ? uniq(v.map(jsType)).join(' | ') + '[]' : 'unknown[]';
+          return { inline: t2 };
+        }
+        if (v && typeof v === 'object') {
+          var f2 = [];
+          Object.keys(v).forEach(function (k) {
+            var sub = v[k];
+            var t3;
+            if (sub && typeof sub === 'object') {
+              var r = infer(sub, k, types, used);
+              t3 = r.inline || r.name;
+            } else {
+              t3 = sub === null ? 'unknown' : jsType(sub);
+            }
+            f2.push({ key: k, type: t3, opt: false });
+          });
+          types.push({ name: tname, fields: f2 });
+          return { name: tname };
+        }
+        return { inline: jsType(v) };
+      }
+
+      function render(types, style, rootName) {
+        var lines = [];
+        types.forEach(function (t) {
+          if (style === 'type') {
+            lines.push('export type ' + t.name + ' = {');
+          } else {
+            lines.push('export interface ' + t.name + ' {');
+          }
+          t.fields.forEach(function (f) {
+            lines.push('  ' + keyLit(f.key) + (f.opt ? '?' : '') + ': ' + f.type + ';');
+          });
+          lines.push('}' + (style === 'type' ? ';' : ''));
+          lines.push('');
+        });
+        if (!types.length) lines.push('// The input produced no object types.');
+        return lines.join('\n').replace(/\n+$/, '\n');
+      }
+
+      function convert() {
+        out.innerHTML = '';
+        meta.textContent = '';
+        var src = $('json-in').value;
+        if (!src.trim()) { out.appendChild(el('div', 'empty', 'Paste some JSON and press Generate.')); return; }
+        var data;
+        try { data = JSON.parse(src); } catch (e) { out.appendChild(el('div', 'empty', 'Invalid JSON: ' + e.message)); return; }
+        var types = [];
+        var rootName = $('root-name').value.trim() || 'Root';
+        if (Array.isArray(data)) {
+          var r = infer(data, rootName, types, {});
+          if (r.inline) {
+            types.push({ name: pascal(rootName), fields: [{ key: 'value', type: r.inline, opt: false }] });
+          }
+        } else if (data && typeof data === 'object') {
+          infer(data, rootName, types, {});
+        } else {
+          types.push({ name: pascal(rootName), fields: [{ key: 'value', type: jsType(data), opt: false }] });
+        }
+        // Root must be first in the output.
+        types.sort(function (a, b) {
+          if (a.name === pascal(rootName)) return -1;
+          if (b.name === pascal(rootName)) return 1;
+          return 0;
+        });
+        last = render(types, $('style').value, rootName);
+        var pre = document.createElement('pre');
+        pre.textContent = last;
+        out.appendChild(pre);
+        meta.textContent = types.length + ' type(s)';
+      }
+
+      function el(tag, cls, txt) { var d = document.createElement(tag); if (cls) d.className = cls; d.textContent = txt; return d; }
+
+      $('btn-convert').addEventListener('click', convert);
+      $('style').addEventListener('change', convert);
+      $('root-name').addEventListener('change', convert);
+      $('btn-sample').addEventListener('click', function () {
+        $('json-in').value = JSON.stringify({
+          id: 1, email: 'ada@example.com', role: null, tags: ['a', 'b'],
+          profile: { city: 'London', verified: true },
+          orders: [{ id: 10, total: 9.5, note: 'gift' }, { id: 11, total: 4 }]
+        }, null, 2);
+        convert();
+      });
+      $('btn-copy').addEventListener('click', function () {
+        if (!last) return;
+        navigator.clipboard.writeText(last).then(function () { meta.textContent = 'copied'; });
+      });
+    })();
+  </script>
+</body>
+</html>
