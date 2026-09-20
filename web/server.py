@@ -18,6 +18,7 @@ import json
 import os
 import posixpath
 import re
+import time
 import urllib.parse
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -41,6 +42,11 @@ PAGES = {
     "/xml-formatter": "xml-formatter.html",
     "/json-to-csv": "json-to-csv.html",
 }
+
+# Anonymous hit counter (feedback loop — no IP, no PII). Ephemeral on Render free tier
+# (resets on deploy), so /__stats__ reads it as a rolling recent-window signal.
+HITS = os.path.join(ROOT, "hits.jsonl")
+BOT_UA = re.compile(r"bot|crawl|spider|slurp|preview|scan|monitor|pingdom|uptime", re.I)
 
 
 # ---------- Stripe (stdlib urllib) ----------
@@ -130,8 +136,51 @@ class Handler(BaseHTTPRequestHandler):
     def _query(self):
         return urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
 
+    def _log_hit(self, path):
+        ua = self.headers.get("User-Agent", "") or ""
+        bot = bool(BOT_UA.search(ua))
+        ref = (self.headers.get("Referer") or "").split("?")[0][:200]
+        rec = {"t": int(time.time()), "path": path[:200], "ref": ref, "bot": bot}
+        try:
+            with open(HITS, "a") as f:
+                f.write(json.dumps(rec, separators=(",", ":")) + "\n")
+        except OSError:
+            pass
+
+    def handle_stats(self):
+        total = bots = humans = 0
+        paths, referers = {}, {}
+        try:
+            with open(HITS) as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        r = json.loads(line)
+                    except ValueError:
+                        continue
+                    total += 1
+                    if r.get("bot"):
+                        bots += 1
+                    else:
+                        humans += 1
+                    p = r.get("path", "?")
+                    paths[p] = paths.get(p, 0) + 1
+                    ref = r.get("ref", "")
+                    if ref:
+                        referers[ref] = referers.get(ref, 0) + 1
+        except OSError:
+            pass
+        return self._json(200, {
+            "total": total, "bots": bots, "humans": humans,
+            "paths": dict(sorted(paths.items(), key=lambda kv: -kv[1])[:20]),
+            "referers": dict(sorted(referers.items(), key=lambda kv: -kv[1])[:20]),
+        })
+
     def do_GET(self):
         path = urllib.parse.urlparse(self.path).path
+        self._log_hit(path)
         if path == "/":
             return self._serve_file("index.html", "text/html; charset=utf-8")
         if path in PAGES:
@@ -145,6 +194,8 @@ class Handler(BaseHTTPRequestHandler):
             if ".." in rel or rel.startswith("/"):
                 return self._json(400, {"error": "bad path"})
             return self._serve_file(rel)
+        if path == "/__stats__":
+            return self.handle_stats()
         if path == "/robots.txt":
             return self._serve_file("robots.txt", "text/plain")
         if path == "/sitemap.xml":
@@ -155,6 +206,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         path = urllib.parse.urlparse(self.path).path
+        self._log_hit(path)
         if path == "/api/checkout":
             return self.handle_checkout()
         return self._json(404, {"error": "not found"})
