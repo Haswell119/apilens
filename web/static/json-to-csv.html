@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON to CSV Converter — Convert JSON Array to CSV Online | APILens</title>
+  <meta name="description" content="Free online JSON to CSV converter. Paste a JSON array of objects and convert it to a downloadable CSV in one click. Runs 100% in your browser — no upload, no account.">
+  <link rel="canonical" href="https://apilens-llau.onrender.com/json-to-csv">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="JSON to CSV Converter — Convert JSON Array to CSV Online">
+  <meta property="og:description" content="Free, private JSON to CSV converter. Turn a JSON array of objects into a CSV you can download, entirely in your browser.">
+  <meta property="og:url" content="https://apilens-llau.onrender.com/json-to-csv">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JSON to CSV Converter — Convert JSON Array to CSV Online">
+  <meta name="twitter:description" content="Free, private, ad-free JSON to CSV converter. Paste JSON, download CSV.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens JSON to CSV Converter",
+    "url": "https://apilens-llau.onrender.com/json-to-csv",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Free online JSON to CSV converter that turns a JSON array of objects into a downloadable CSV entirely in the browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/static/icons/icon48.png">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .jc-tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .jc-tool textarea { min-height: 160px; border: none; border-radius: 0; }
+    .jc-bar { display: flex; gap: 8px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .jc-bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 90px; }
+    .out .empty { color: var(--muted); }
+    .out pre { background: #0b1322; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; overflow: auto; margin: 0 0 12px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.55; max-height: 320px; }
+    .out .errbox { background: #1a0e0e; border: 1px solid #7f1d1d; border-radius: 8px; padding: 12px 14px; color: #fca5a5; font-size: 13px; }
+    .dl-btn { display: inline-block; }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/">Full tool ↗</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
+
+  <div class="page">
+    <nav class="toolnav" aria-label="Tools">
+      <a href="/">JSON formatter</a>
+      <a href="/json-validator">JSON validator</a>
+      <a href="/jwt-decoder">JWT decoder</a>
+      <a href="/json-diff">JSON diff</a>
+      <a href="/jsonpath">JSONPath</a>
+      <a href="/xml-formatter">XML formatter</a>
+      <a href="/json-to-csv" class="active">JSON to CSV</a>
+    </nav>
+
+    <h1>JSON to CSV Converter — turn JSON into a spreadsheet</h1>
+    <p class="lede">Paste a <strong>JSON array of objects</strong> to convert it to CSV you can open in Excel, Google Sheets or any spreadsheet. Nested values are stringified, headers are auto-detected, and everything runs locally in your browser.</p>
+
+    <div class="jc-tool">
+      <textarea id="jc-input" spellcheck="false" placeholder='Paste a JSON array here — e.g. [{"name":"Ada","age":36},{"name":"Grace","age":45}]'></textarea>
+      <div class="jc-bar">
+        <button id="btn-convert" class="btn primary">Convert</button>
+        <button id="btn-sample" class="btn">Sample</button>
+        <button id="btn-clear" class="btn">Clear</button>
+        <span class="meta" id="meta"></span>
+      </div>
+      <div class="out" id="out"><div class="empty">Converted CSV appears here.</div></div>
+    </div>
+
+    <div class="section">
+      <h2>JSON to CSV converter — frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>What JSON shape does this converter accept?</h3>
+          <p>An <strong>array of objects</strong>, e.g. <code>[{"a":1},{"a":2}]</code>. The keys of the objects become CSV column headers. A single object is treated as a one-row array.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What happens to nested objects and arrays?</h3>
+          <p>They are stringified as JSON (e.g. <code>{"x":1}</code>) and placed in the cell, so no data is lost. Use a <a href="/jsonpath">JSONPath</a> query to flatten a structure before converting if you need specific fields.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is my data uploaded anywhere?</h3>
+          <p>No. Conversion runs 100% in your browser — nothing is uploaded, logged or transmitted. APILens is MIT open source with no ads and no analytics.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How are special characters like commas and quotes handled?</h3>
+          <p>Cells containing a comma, quote or newline are wrapped in double quotes and inner quotes are doubled (<code>""</code>), per the standard CSV (RFC 4180) escaping rules.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What if my objects have different keys?</h3>
+          <p>The converter collects the union of all keys across all objects as the header row, and fills missing values with an empty cell — so no column is dropped.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does it work with large files?</h3>
+          <p>Yes for typical API payloads (up to ~20k nodes / 2 MB free). For larger exports, <a href="/">APILens Pro</a> raises the limit to 200k nodes / 20 MB and funds the open-source project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>100% local · no analytics · no ads · <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> · Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+
+  <script src="/static/formatter.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var input = $('jc-input'), out = $('out'), meta = $('meta');
+
+      function csvCell(v) {
+        if (v === null || v === undefined) return '';
+        var s = String(v);
+        if (/[",\n\r]/.test(s)) s = '"' + s.replace(/"/g, '""') + '"';
+        return s;
+      }
+
+      function toCsv(data) {
+        var rows = Array.isArray(data) ? data : [data];
+        var headers = [];
+        rows.forEach(function (o) {
+          if (o && typeof o === 'object' && !Array.isArray(o)) {
+            Object.keys(o).forEach(function (k) { if (headers.indexOf(k) < 0) headers.push(k); });
+          }
+        });
+        var lines = [headers.map(csvCell).join(',')];
+        rows.forEach(function (o) {
+          lines.push(headers.map(function (h) {
+            var v = (o && typeof o === 'object') ? o[h] : o;
+            if (v !== null && typeof v === 'object') v = JSON.stringify(v);
+            return csvCell(v);
+          }).join(','));
+        });
+        return lines.join('\n');
+      }
+
+      function convert() {
+        var t = input.value;
+        out.innerHTML = '';
+        meta.textContent = '';
+        if (!t.trim()) { out.appendChild(APILens.el('div', 'empty', 'Paste a JSON array above to convert it.')); return; }
+        var data;
+        try { data = JSON.parse(t); }
+        catch (e) { out.appendChild(APILens.el('div', 'errbox', 'Invalid JSON: ' + e.message)); meta.textContent = 'Invalid JSON'; return; }
+        if (Array.isArray(data) && data.length && typeof data[0] !== 'object') {
+          out.appendChild(APILens.el('div', 'errbox', 'Expected an array of objects (e.g. [{"a":1},...]), got an array of primitives.'));
+          return;
+        }
+        var csv = toCsv(data);
+        var pre = document.createElement('pre');
+        pre.textContent = csv;
+        out.appendChild(pre);
+        var dl = APILens.el('button', 'btn primary dl-btn', 'Download CSV');
+        dl.addEventListener('click', function () {
+          var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'apilens-export.csv';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+        });
+        out.appendChild(dl);
+        var rows = Array.isArray(data) ? data.length : 1;
+        meta.textContent = rows + ' row(s) · ' + csv.split('\n')[0].split(',').length + ' column(s)';
+      }
+
+      $('btn-convert').addEventListener('click', convert);
+      $('btn-sample').addEventListener('click', function () {
+        input.value = JSON.stringify([
+          { name: 'Ada Lovelace', role: 'Programmer', born: 1815, "tags": ["math", "computing"] },
+          { name: 'Grace Hopper', role: 'Admiral', born: 1906, "tags": ["compiler", "COBOL"] },
+          { name: 'Margaret Hamilton', role: 'Engineer', born: 1936, "tags": ["Apollo", "software"] }
+        ], null, 2);
+        convert();
+      });
+      $('btn-clear').addEventListener('click', function () { input.value = ''; out.innerHTML = '<div class="empty">Converted CSV appears here.</div>'; meta.textContent = ''; });
+      input.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') convert(); });
+    })();
+  </script>
+</body>
+</html>

@@ -37,6 +37,9 @@ PAGES = {
     "/jwt-decoder": "jwt-decoder.html",
     "/json-diff": "json-diff.html",
     "/jsonpath": "jsonpath.html",
+    "/json-validator": "json-validator.html",
+    "/xml-formatter": "xml-formatter.html",
+    "/json-to-csv": "json-to-csv.html",
 }
 
 
