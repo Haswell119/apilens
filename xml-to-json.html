@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XML to JSON Converter — Free Online Tool | APILens</title>
+  <meta name="description" content="Free XML to JSON converter. Paste XML and get clean JSON with attributes as @-prefixed keys, repeated elements as arrays and text as #text. Runs 100% in your browser — nothing is uploaded.">
+  <link rel="canonical" href="https://haswell119.github.io/apilens/xml-to-json">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="XML to JSON Converter — Free Online Tool | APILens">
+  <meta property="og:description" content="Free XML to JSON converter. Paste XML and get clean JSON with attributes as @-prefixed keys, repeated elements as arrays and text as #text. Runs 100% in your browser — nothing is uploaded.">
+  <meta property="og:url" content="https://haswell119.github.io/apilens/xml-to-json">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="XML to JSON Converter — Free Online Tool | APILens">
+  <meta name="twitter:description" content="Free XML to JSON converter. Paste XML and get clean JSON with attributes as @-prefixed keys, repeated elements as arrays and text as #text. Runs 100% in your browser — nothing is uploaded.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens XML to JSON Converter",
+    "url": "https://haswell119.github.io/apilens/xml-to-json",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Free XML to JSON converter. Paste XML and get clean JSON with attributes as @-prefixed keys, repeated elements as arrays and text as #text. Runs 100% in your browser — nothing is uploaded.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/apilens/static/icons/icon48.png">
+  <link rel="stylesheet" href="/apilens/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .tool-panes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+    @media (max-width: 700px) { .tool-panes { grid-template-columns: 1fr; } }
+    .tool .lab { color: var(--muted); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .tool textarea { min-height: 220px; }
+    .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 120px; }
+    .out .empty { color: var(--muted); }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .procta { margin-top: 32px; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 20px 22px; }
+    .procta h2 { font-size: 19px; margin: 0 0 8px; }
+    .procta p { color: var(--muted); font-size: 15px; margin: 0 0 14px; }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    .page pre, .out pre { margin: 0; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; white-space: pre; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/apilens/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/apilens/">Full tool &#8599;</a>
+      <a class="gh-link" href="/apilens/#pricing">Pro &#8212; $19 once</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </header>
+
+  <div class="page">
+<nav class="toolnav" aria-label="Tools">
+      <a href="/apilens/">JSON formatter</a>
+      <a href="/apilens/json-validator">JSON validator</a>
+      <a href="/apilens/jwt-decoder">JWT decoder</a>
+      <a href="/apilens/json-diff">JSON diff</a>
+      <a href="/apilens/jsonpath">JSONPath tester</a>
+      <a href="/apilens/xml-formatter">XML formatter</a>
+      <a href="/apilens/json-to-csv">JSON to CSV</a>
+      <a href="/apilens/xml-to-json">XML to JSON</a>
+      <a href="/apilens/json-to-yaml">JSON to YAML</a>
+      <a href="/apilens/json-to-typescript">JSON to TypeScript</a>
+      <a href="/apilens/base64-encoder">Base64 encode / decode</a>
+      <a href="/apilens/unix-timestamp-converter">Unix timestamp converter</a>
+    </nav>
+
+    <h1>XML to JSON Converter — Free Online Tool | APILens</h1>
+    <p class="lede">Paste XML and get JSON back. Attributes become <code>@name</code> keys, repeated child elements become arrays, and element text lands in <code>#text</code>. Conversion runs entirely in your browser &mdash; nothing is uploaded, logged or tracked.</p>
+
+    <div class="tool">
+      <div class="tool-panes">
+        <div>
+          <div class="lab">XML input</div>
+          <textarea id="xml-in" spellcheck="false" placeholder='&lt;catalog&gt;
+  &lt;book id="1"&gt;&lt;title&gt;Dune&lt;/title&gt;&lt;price&gt;9.99&lt;/price&gt;&lt;/book&gt;
+  &lt;book id="2"&gt;&lt;title&gt;Neuromancer&lt;/title&gt;&lt;price&gt;12.50&lt;/price&gt;&lt;/book&gt;
+&lt;/catalog&gt;'></textarea>
+        </div>
+        <div>
+          <div class="lab">JSON output</div>
+          <div class="out" id="json-out"><div class="empty">Converted JSON appears here.</div></div>
+        </div>
+      </div>
+      <div class="bar">
+        <button id="btn-convert" class="btn primary">Convert to JSON</button>
+        <button id="btn-attr" class="btn">Attributes: @name</button>
+        <button id="btn-sample" class="btn">Sample</button>
+        <button id="btn-copy" class="btn">Copy JSON</button>
+        <button id="btn-clear" class="btn">Clear</button>
+        <span class="meta" id="meta"></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>How the conversion maps XML to JSON</h2>
+      <table>
+        <tr><th>XML</th><th>JSON</th></tr>
+        <tr><td><code>&lt;book id="1"&gt;</code></td><td><code>"@id": "1"</code> (attribute)</td></tr>
+        <tr><td><code>&lt;title&gt;Dune&lt;/title&gt;</code></td><td><code>"title": "Dune"</code></td></tr>
+        <tr><td><code>&lt;p&gt;a&lt;/p&gt;&lt;p&gt;b&lt;/p&gt;</code></td><td><code>"p": ["a", "b"]</code> (array)</td></tr>
+        <tr><td>text mixed with child elements</td><td><code>"#text": "..."</code></td></tr>
+        <tr><td>namespace prefix <code>ns:tag</code></td><td>kept verbatim in the key</td></tr>
+      </table>
+      <p style="color:var(--muted);font-size:14px;">XML has no native notion of a number, a boolean or null &mdash; everything is text. This converter keeps values as strings so nothing is silently reinterpreted; cast on your side where the schema is known.</p>
+    </div>
+
+    <div class="section">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Is this XML to JSON conversion done locally?</h3>
+          <p>Yes. The XML is parsed with your browser's own <code>DOMParser</code> and converted in JavaScript. No request is made, so XML containing credentials, tokens or customer data never leaves the machine.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How are XML attributes handled?</h3>
+          <p>Attributes are emitted as keys prefixed with <code>@</code> (<code>@id</code>, <code>@lang</code>) so they can never collide with a child element of the same name. That is the same convention used by the common Java and Python XML-to-JSON libraries.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What happens to repeated elements?</h3>
+          <p>If the same tag appears more than once under the same parent, the values are collected into an array. A single occurrence stays a plain value, which matches what most APIs expect.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Why are my numbers quoted in the JSON output?</h3>
+          <p>Because XML does not distinguish <code>9.99</code> from <code>"9.99"</code>. Quote-preserving output is lossless; if you need typed values, run the result through a schema-aware mapper.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does it handle CDATA and comments?</h3>
+          <p>CDATA sections are treated as text content and preserved in the value. Comments and processing instructions are ignored, since they carry no data.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What about invalid XML?</h3>
+          <p>The tool reports the parse error instead of guessing. Validating and formatting the document first with the <a href="/apilens/xml-formatter">XML formatter</a> usually shows you the unclosed tag immediately.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="procta">
+      <h2>Working with large XML or JSON payloads?</h2>
+      <p>The free tools handle documents up to roughly 2 MB. APILens Pro ($19, one-time) raises the limit to 20 MB, adds large-file mode and JSONPath query, and funds an open-source project with no ads and no tracking.</p>
+      <a class="btn primary" href="/apilens/#pricing">See APILens Pro &#8212; $19 once</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>100% local &#183; no analytics &#183; no ads &#183; <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> &#183; Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+  <script src="/apilens/static/formatter.js"></script>
+  <script src="/apilens/static/tools.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var out = $('json-out'), meta = $('meta'), last = '';
+
+      function nodeToValue(node) {
+        var obj = {}, text = '', kids = [], i, child;
+        for (i = 0; i < node.attributes.length; i++) {
+          obj['@' + node.attributes[i].name] = node.attributes[i].value;
+        }
+        for (i = 0; i < node.childNodes.length; i++) {
+          child = node.childNodes[i];
+          if (child.nodeType === 3 || child.nodeType === 4) {
+            text += child.nodeValue;
+          } else if (child.nodeType === 1) {
+            kids.push(child);
+          }
+        }
+        if (!kids.length && !Object.keys(obj).length) return text.trim();
+        for (i = 0; i < kids.length; i++) {
+          var name = kids[i].nodeName;
+          var val = nodeToValue(kids[i]);
+          if (Object.prototype.hasOwnProperty.call(obj, name)) {
+            if (!Array.isArray(obj[name])) obj[name] = [obj[name]];
+            obj[name].push(val);
+          } else {
+            obj[name] = val;
+          }
+        }
+        if (kids.length && text.trim()) obj['#text'] = text.trim();
+        return obj;
+      }
+
+      function convert() {
+        out.innerHTML = '';
+        meta.textContent = '';
+        var src = $('xml-in').value;
+        if (!src.trim()) { out.appendChild(el('div', 'empty', 'Paste some XML and press Convert.')); return; }
+        var doc = new DOMParser().parseFromString(src, 'text/xml');
+        var err = doc.getElementsByTagName('parsererror');
+        if (err.length) {
+          out.appendChild(el('div', 'empty', 'XML parse error: ' + err[0].textContent.replace(/\s+/g, ' ').slice(0, 300)));
+          return;
+        }
+        var root = doc.documentElement;
+        var result = {};
+        result[root.nodeName] = nodeToValue(root);
+        last = JSON.stringify(result, null, 2);
+        var pre = document.createElement('pre');
+        pre.textContent = last.length > 200000 ? last.slice(0, 200000) + '\n... truncated in the view; use Copy for the full output' : last;
+        out.appendChild(pre);
+        meta.textContent = root.nodeName + ' \u00b7 ' + last.length + ' chars';
+      }
+
+      function el(tag, cls, txt) {
+        var d = document.createElement(tag);
+        if (cls) d.className = cls;
+        d.textContent = txt;
+        return d;
+      }
+
+      $('btn-convert').addEventListener('click', convert);
+      $('btn-sample').addEventListener('click', function () {
+        $('xml-in').value = '<catalog>\n  <book id="1" lang="en"><title>Dune</title><price>9.99</price><tags><tag>scifi</tag><tag>classic</tag></tags></book>\n  <book id="2" lang="en"><title>Neuromancer</title><price>12.50</price><tags><tag>cyberpunk</tag></tags></book>\n</catalog>';
+        convert();
+      });
+      $('btn-copy').addEventListener('click', function () {
+        if (!last) return;
+        navigator.clipboard.writeText(last).then(function () { meta.textContent = 'copied'; });
+      });
+      $('btn-clear').addEventListener('click', function () { $('xml-in').value = ''; out.innerHTML = '<div class="empty">Converted JSON appears here.</div>'; meta.textContent = ''; last = ''; });
+      $('btn-attr').addEventListener('click', function () { meta.textContent = 'attributes are always emitted as @name keys'; });
+    })();
+  </script>
+</body>
+</html>
