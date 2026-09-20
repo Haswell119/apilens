@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unix Timestamp Converter (Epoch to Date) — Free Online | APILens</title>
+  <meta name="description" content="Convert Unix timestamps to dates and dates to epoch seconds or milliseconds. Shows UTC, your local time and ISO 8601, with a live current-timestamp clock. 100% in your browser.">
+  <link rel="canonical" href="https://haswell119.github.io/apilens/unix-timestamp-converter">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="Unix Timestamp Converter (Epoch to Date) — Free Online | APILens">
+  <meta property="og:description" content="Convert Unix timestamps to dates and dates to epoch seconds or milliseconds. Shows UTC, your local time and ISO 8601, with a live current-timestamp clock. 100% in your browser.">
+  <meta property="og:url" content="https://haswell119.github.io/apilens/unix-timestamp-converter">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Unix Timestamp Converter (Epoch to Date) — Free Online | APILens">
+  <meta name="twitter:description" content="Convert Unix timestamps to dates and dates to epoch seconds or milliseconds. Shows UTC, your local time and ISO 8601, with a live current-timestamp clock. 100% in your browser.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens Unix Timestamp Converter",
+    "url": "https://haswell119.github.io/apilens/unix-timestamp-converter",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Convert Unix timestamps to dates and dates to epoch seconds or milliseconds. Shows UTC, your local time and ISO 8601, with a live current-timestamp clock. 100% in your browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/apilens/static/icons/icon48.png">
+  <link rel="stylesheet" href="/apilens/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .tool-panes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+    @media (max-width: 700px) { .tool-panes { grid-template-columns: 1fr; } }
+    .tool .lab { color: var(--muted); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .tool textarea { min-height: 220px; }
+    .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 120px; }
+    .out .empty { color: var(--muted); }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .procta { margin-top: 32px; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 20px 22px; }
+    .procta h2 { font-size: 19px; margin: 0 0 8px; }
+    .procta p { color: var(--muted); font-size: 15px; margin: 0 0 14px; }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    .page pre, .out pre { margin: 0; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; white-space: pre; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/apilens/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/apilens/">Full tool &#8599;</a>
+      <a class="gh-link" href="/apilens/#pricing">Pro &#8212; $19 once</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </header>
+
+  <div class="page">
+<nav class="toolnav" aria-label="Tools">
+      <a href="/apilens/">JSON formatter</a>
+      <a href="/apilens/json-validator">JSON validator</a>
+      <a href="/apilens/jwt-decoder">JWT decoder</a>
+      <a href="/apilens/json-diff">JSON diff</a>
+      <a href="/apilens/jsonpath">JSONPath tester</a>
+      <a href="/apilens/xml-formatter">XML formatter</a>
+      <a href="/apilens/json-to-csv">JSON to CSV</a>
+      <a href="/apilens/xml-to-json">XML to JSON</a>
+      <a href="/apilens/json-to-yaml">JSON to YAML</a>
+      <a href="/apilens/json-to-typescript">JSON to TypeScript</a>
+      <a href="/apilens/base64-encoder">Base64 encode / decode</a>
+      <a href="/apilens/unix-timestamp-converter">Unix timestamp converter</a>
+    </nav>
+
+    <h1>Unix Timestamp Converter (Epoch to Date) — Free Online | APILens</h1>
+    <p class="lede">Convert epoch to a readable date and back. Seconds or milliseconds, UTC and local time, ISO 8601 and RFC 2822 output, plus a live clock showing the current Unix time. Everything happens in your browser.</p>
+
+    <div class="tool">
+      <div class="tool-panes">
+        <div>
+          <div class="lab">1. Unix timestamp &#8594; date</div>
+          <div style="display:flex;gap:8px;margin-bottom:10px;">
+            <input id="ts-in" class="btn" style="flex:1;padding:8px 10px;font-family:ui-monospace,Menlo,Consolas,monospace;" value="1767225600" aria-label="Unix timestamp">
+            <select id="unit" class="btn" style="padding:8px 10px;">
+              <option value="s" selected>seconds</option>
+              <option value="ms">milliseconds</option>
+            </select>
+          </div>
+          <div class="out" id="ts-out" style="border:1px solid var(--border);border-radius:8px;"><div class="empty">Converted date appears here.</div></div>
+        </div>
+        <div>
+          <div class="lab">2. Date &#8594; Unix timestamp</div>
+          <div style="display:flex;gap:8px;margin-bottom:10px;">
+            <input id="date-in" class="btn" type="datetime-local" style="flex:1;padding:8px 10px;" aria-label="Date and time">
+          </div>
+          <div class="out" id="date-out" style="border:1px solid var(--border);border-radius:8px;"><div class="empty">Epoch values appear here.</div></div>
+        </div>
+      </div>
+      <div class="bar">
+        <button id="btn-now" class="btn primary">Use current time</button>
+        <button id="btn-copy" class="btn">Copy UTC</button>
+        <span class="meta" id="live">now: &mdash;</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Seconds or milliseconds &mdash; how to tell them apart</h2>
+      <table>
+        <tr><th>Timestamp</th><th>Unit</th><th>Date it represents</th></tr>
+        <tr><td><code>1767225600</code></td><td>seconds (10 digits)</td><td>2026&ndash;01&ndash;01 &mdash; the usual Unix time</td></tr>
+        <tr><td><code>1767225600000</code></td><td>milliseconds (13 digits)</td><td>The same instant &mdash; what JavaScript's <code>Date.now()</code> returns</td></tr>
+      </table>
+      <p style="color:var(--muted);font-size:14px;">Rule of thumb: 10 digits is seconds, 13 is milliseconds, and 16 is microseconds (some tracing systems). Values before 1970 are negative and represent dates before the epoch. A &ldquo;timestamp&rdquo; in an API that decodes to a year around 55&nbsp;000 is almost certainly milliseconds read as seconds.</p>
+    </div>
+
+    <div class="section">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Is epoch time always UTC?</h3>
+          <p>The Unix timestamp itself has no timezone &mdash; it counts seconds since 1970-01-01T00:00:00Z. This tool displays that instant in UTC and in your browser's local timezone so you can see both interpretations of the same number.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Why does my timestamp show a different year than expected?</h3>
+          <p>Almost always a unit mismatch. A 13-digit value has been read as seconds and lands thousands of years in the future, or a 10-digit value read as milliseconds collapses into 1970. Switch the unit selector and it will line up.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is the Year 2038 problem?</h3>
+          <p>Signed 32-bit integers overflow on 2038-01-19T03:14:07Z. Anything still storing Unix seconds in a 32-bit signed field must be widened before then &mdash; which is why storing milliseconds in a 64-bit type is now the common default.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does it handle macOS/Windows file times?</h3>
+          <p>No. Those use different epochs (2001-01-01 and 1601-01-01 respectively). This converter handles the Unix epoch only &mdash; but you can add the offset in seconds to convert between them by hand.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I use it for JWT <code>exp</code> and <code>iat</code> claims?</h3>
+          <p>Yes &mdash; those are Unix seconds. For a full view of a token, including human-readable expiry, use the <a href="/apilens/jwt-decoder">JWT decoder</a>.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Are the values I type stored anywhere?</h3>
+          <p>No. All conversion is local JavaScript, there is no request and no analytics, so nothing you paste here leaves the browser.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="procta">
+      <h2>Debugging API timestamps all day?</h2>
+      <p>APILens Pro is a one-time $19 licence: large-file mode up to 20 MB across the JSON tools, JSONPath query and diff on bigger payloads, no ads and no subscription.</p>
+      <a class="btn primary" href="/apilens/#pricing">See APILens Pro &#8212; $19 once</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>100% local &#183; no analytics &#183; no ads &#183; <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> &#183; Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+  <script src="/apilens/static/formatter.js"></script>
+  <script src="/apilens/static/tools.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var tsOut = $('ts-out'), dateOut = $('date-out'), meta = $('meta'), lastUtc = '';
+
+      function rows(pairs) {
+        var html = '';
+        pairs.forEach(function (p) {
+          html += '<div style="display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid var(--border);font-size:13.5px;">' +
+                  '<span style="color:var(--muted);">' + p[0] + '</span><span style="font-family:ui-monospace,Menlo,Consolas,monospace;">' + p[1] + '</span></div>';
+        });
+        return html;
+      }
+
+      function convertTs() {
+        tsOut.innerHTML = '';
+        var raw = $('ts-in').value.trim();
+        if (!raw) { tsOut.innerHTML = '<div class="empty">Enter a Unix timestamp.</div>'; return; }
+        var n = Number(raw);
+        if (!isFinite(n)) { tsOut.innerHTML = '<div class="empty">Not a number.</div>'; return; }
+        var ms = $('unit').value === 'ms' ? n : n * 1000;
+        var d = new Date(ms);
+        if (isNaN(d.getTime())) { tsOut.innerHTML = '<div class="empty">Out of range.</div>'; return; }
+        lastUtc = d.toISOString();
+        tsOut.innerHTML = rows([
+          ['Unix seconds', String(Math.floor(ms / 1000))],
+          ['Unix milliseconds', String(Math.round(ms))],
+          ['ISO 8601 (UTC)', d.toISOString()],
+          ['UTC', d.toUTCString()],
+          ['Local time', d.toLocaleString()],
+          ['Local timezone', Intl.DateTimeFormat().resolvedOptions().timeZone + ' (UTC' + (d.getTimezoneOffset() <= 0 ? '+' : '-') + Math.abs(d.getTimezoneOffset() / 60) + ')'],
+          ['Relative', relative(ms)]
+        ]);
+      }
+
+      function relative(ms) {
+        var diff = Date.now() - ms;
+        var past = diff >= 0, a = Math.abs(diff);
+        var units = [['year', 31557600000], ['month', 2629800000], ['day', 86400000], ['hour', 3600000], ['minute', 60000], ['second', 1000]];
+        for (var i = 0; i < units.length; i++) {
+          if (a >= units[i][1]) {
+            var v = Math.floor(a / units[i][1]);
+            return v + ' ' + units[i][0] + (v > 1 ? 's' : '') + (past ? ' ago' : ' from now');
+          }
+        }
+        return 'just now';
+      }
+
+      function convertDate() {
+        dateOut.innerHTML = '';
+        var v = $('date-in').value;
+        if (!v) { dateOut.innerHTML = '<div class="empty">Pick a date and time.</div>'; return; }
+        var d = new Date(v);
+        if (isNaN(d.getTime())) { dateOut.innerHTML = '<div class="empty">Invalid date.</div>'; return; }
+        var ms = d.getTime();
+        dateOut.innerHTML = rows([
+          ['Unix seconds', String(Math.floor(ms / 1000))],
+          ['Unix milliseconds', String(ms)],
+          ['ISO 8601 (UTC)', d.toISOString()],
+          ['RFC 2822', d.toUTCString()]
+        ]);
+      }
+
+      function useNow() {
+        $('unit').value = 's';
+        $('ts-in').value = String(Math.floor(Date.now() / 1000));
+        $('date-in').value = localInput(new Date());
+        convertTs(); convertDate();
+      }
+      function localInput(d) {
+        var p = function (n) { return String(n).padStart(2, '0'); };
+        return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + 'T' + p(d.getHours()) + ':' + p(d.getMinutes());
+      }
+
+      $('ts-in').addEventListener('input', convertTs);
+      $('unit').addEventListener('change', convertTs);
+      $('date-in').addEventListener('input', convertDate);
+      $('btn-now').addEventListener('click', useNow);
+      $('btn-copy').addEventListener('click', function () {
+        if (!lastUtc) return;
+        var m = $('meta');
+        navigator.clipboard.writeText(lastUtc).then(function () { m.textContent = 'ISO UTC copied'; });
+      });
+
+      setInterval(function () {
+        $('live').textContent = 'now: ' + Math.floor(Date.now() / 1000) + ' s \u00b7 ' + Date.now() + ' ms';
+      }, 1000);
+      $('live').textContent = 'now: ' + Math.floor(Date.now() / 1000) + ' s \u00b7 ' + Date.now() + ' ms';
+
+      $('ts-in').value = String(Math.floor(Date.now() / 1000));
+      $('date-in').value = localInput(new Date());
+      convertTs(); convertDate();
+    })();
+  </script>
+</body>
+</html>
