@@ -63,14 +63,14 @@ def stripe_call(method, path, data=None):
         return json.loads(r.read().decode())
 
 
-def create_checkout_session():
+def create_checkout_session(base):
     return stripe_call("POST", "/v1/checkout/sessions", {
         "mode": "payment",
         "customer_creation": "always",
         "line_items[0][price]": PRICE_ID,
         "line_items[0][quantity]": 1,
-        "success_url": APP_URL + "/?session_id={CHECKOUT_SESSION_ID}",
-        "cancel_url": APP_URL + "/",
+        "success_url": base + "/?session_id={CHECKOUT_SESSION_ID}",
+        "cancel_url": base + "/",
         "allow_promotion_codes": "true",
     })
 
@@ -126,6 +126,9 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
         self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Cache-Control", "no-store" if ctype.startswith("application/json") else "public, max-age=300")
         self.end_headers()
         self.wfile.write(body)
@@ -228,8 +231,10 @@ class Handler(BaseHTTPRequestHandler):
     def handle_checkout(self):
         if not SK or not PRICE_ID:
             return self._json(503, {"error": "payments not configured"})
+        origin = (self.headers.get("Origin") or "").rstrip("/")
+        base = "https://haswell119.github.io/apilens" if origin == "https://haswell119.github.io" else APP_URL
         try:
-            sess = create_checkout_session()
+            sess = create_checkout_session(base)
         except Exception as e:  # noqa: BLE001
             return self._json(502, {"error": "stripe error: %s" % e})
         return self._json(200, {"url": sess.get("url"), "id": sess.get("id")})

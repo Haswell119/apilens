@@ -45,7 +45,7 @@ print('   OK (roundtrip, tamper, garbage all handled)')
 
 print('2) checkout session creation (live Stripe, no charge)')
 if SK:
-    sess = srv.create_checkout_session()
+    sess = srv.create_checkout_session(srv.APP_URL)
     assert sess.get('url') and sess.get('id'), sess
     print('   session id:', sess['id'][:16] + '…', 'url present:', bool(sess.get('url')))
 else:
