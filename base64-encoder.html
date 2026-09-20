@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Base64 Encoder / Decoder — Free Online Tool | APILens</title>
+  <meta name="description" content="Free Base64 encoder and decoder with full UTF-8 support and an optional URL-safe alphabet. Encode text to Base64 or decode Base64 back to text locally — nothing is uploaded.">
+  <link rel="canonical" href="https://haswell119.github.io/apilens/base64-encoder">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="Base64 Encoder / Decoder — Free Online Tool | APILens">
+  <meta property="og:description" content="Free Base64 encoder and decoder with full UTF-8 support and an optional URL-safe alphabet. Encode text to Base64 or decode Base64 back to text locally — nothing is uploaded.">
+  <meta property="og:url" content="https://haswell119.github.io/apilens/base64-encoder">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Base64 Encoder / Decoder — Free Online Tool | APILens">
+  <meta name="twitter:description" content="Free Base64 encoder and decoder with full UTF-8 support and an optional URL-safe alphabet. Encode text to Base64 or decode Base64 back to text locally — nothing is uploaded.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens Base64 Encoder and Decoder",
+    "url": "https://haswell119.github.io/apilens/base64-encoder",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Free Base64 encoder and decoder with full UTF-8 support and an optional URL-safe alphabet. Encode text to Base64 or decode Base64 back to text locally — nothing is uploaded.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/apilens/static/icons/icon48.png">
+  <link rel="stylesheet" href="/apilens/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .tool-panes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+    @media (max-width: 700px) { .tool-panes { grid-template-columns: 1fr; } }
+    .tool .lab { color: var(--muted); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .tool textarea { min-height: 220px; }
+    .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 120px; }
+    .out .empty { color: var(--muted); }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .procta { margin-top: 32px; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 20px 22px; }
+    .procta h2 { font-size: 19px; margin: 0 0 8px; }
+    .procta p { color: var(--muted); font-size: 15px; margin: 0 0 14px; }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    .page pre, .out pre { margin: 0; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; white-space: pre; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/apilens/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/apilens/">Full tool &#8599;</a>
+      <a class="gh-link" href="/apilens/#pricing">Pro &#8212; $19 once</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </header>
+
+  <div class="page">
+<nav class="toolnav" aria-label="Tools">
+      <a href="/apilens/">JSON formatter</a>
+      <a href="/apilens/json-validator">JSON validator</a>
+      <a href="/apilens/jwt-decoder">JWT decoder</a>
+      <a href="/apilens/json-diff">JSON diff</a>
+      <a href="/apilens/jsonpath">JSONPath tester</a>
+      <a href="/apilens/xml-formatter">XML formatter</a>
+      <a href="/apilens/json-to-csv">JSON to CSV</a>
+      <a href="/apilens/xml-to-json">XML to JSON</a>
+      <a href="/apilens/json-to-yaml">JSON to YAML</a>
+      <a href="/apilens/json-to-typescript">JSON to TypeScript</a>
+      <a href="/apilens/base64-encoder">Base64 encode / decode</a>
+      <a href="/apilens/unix-timestamp-converter">Unix timestamp converter</a>
+    </nav>
+
+    <h1>Base64 Encoder / Decoder — Free Online Tool | APILens</h1>
+    <p class="lede">Encode text to Base64 or decode Base64 back to text. Full UTF-8 handling, optional URL-safe alphabet, and an optional decode of Basic auth headers. Everything runs in this browser tab &mdash; nothing is uploaded.</p>
+
+    <div class="tool">
+      <div class="tool-panes">
+        <div>
+          <div class="lab">Input (text or Base64)</div>
+          <textarea id="b64-in" spellcheck="false" placeholder="Hello, world — or SGVsbG8sIHdvcmxk"></textarea>
+        </div>
+        <div>
+          <div class="lab">Output</div>
+          <div class="out" id="b64-out"><div class="empty">The result appears here.</div></div>
+        </div>
+      </div>
+      <div class="bar">
+        <button id="btn-encode" class="btn primary">Encode &#8594; Base64</button>
+        <button id="btn-decode" class="btn">Decode &#8592; Base64</button>
+        <button id="btn-pad" class="btn">Strip padding: off</button>
+        <button id="btn-url" class="btn">URL-safe: off</button>
+        <button id="btn-basic" class="btn">Decode Basic auth</button>
+        <button id="btn-copy" class="btn">Copy</button>
+        <span class="meta" id="meta"></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>What Base64 does (and does not) do</h2>
+      <p style="color:var(--muted);font-size:14px;">Base64 turns arbitrary bytes into 64 printable ASCII characters so the data survives transport through text-only channels: JSON fields, HTTP headers, data URLs and email. It is <strong>encoding, not encryption</strong> &mdash; anyone can decode it. Size grows by about 33% (3 bytes become 4 characters), plus padding.</p>
+      <table>
+        <tr><th>Mode</th><th>Alphabet</th><th>Use it for</th></tr>
+        <tr><td>Standard</td><td><code>A&ndash;Z a&ndash;z 0&ndash;9 + /</code> with <code>=</code> padding</td><td>JSON bodies, data URLs, email attachments</td></tr>
+        <tr><td>URL-safe</td><td><code>-</code> and <code>_</code> instead of <code>+</code> and <code>/</code></td><td>JWT segments, query strings, filenames</td></tr>
+        <tr><td>Unpadded</td><td>no trailing <code>=</code></td><td>JWT segments and some URL parameters</td></tr>
+      </table>
+      <p style="color:var(--muted);font-size:14px;">A JSON Web Token is three URL-safe, unpadded Base64 segments joined by dots &mdash; if that is what you are looking at, the <a href="/apilens/jwt-decoder">JWT decoder</a> shows the header and payload as JSON directly.</p>
+    </div>
+
+    <div class="section">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Is this Base64 tool private?</h3>
+          <p>Yes. Encoding and decoding use the browser's own <code>TextEncoder</code> and <code>atob</code>/<code>btoa</code>. There is no network request of any kind, so API keys, tokens and credentials pasted here stay on your machine.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does it handle accented characters and emoji?</h3>
+          <p>Yes. Input is converted to UTF-8 bytes before encoding, so non-ASCII text round-trips correctly &mdash; unlike a naive <code>btoa()</code> call, which throws or mangles them.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Standard or URL-safe &mdash; which do I need?</h3>
+          <p>Use standard Base64 for JSON bodies, data URLs and email. Use URL-safe (and usually unpadded) when the value goes in a URL, a query parameter or a JWT segment, because <code>+</code> and <code>/</code> have meaning in URLs.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Was Base64 ever meant to be encryption?</h3>
+          <p>No, and it should never be used as one. Base64 is reversible with a single standard library call. If you need confidentiality, use real encryption or a hashing scheme &mdash; Base64 alone protects nothing.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is 'Decode Basic auth' for?</h3>
+          <p>An HTTP Basic header is <code>Basic</code> followed by the Base64 of <code>user:password</code>. That button decodes the value and splits the pair for you. It is a diagnostic convenience &mdash; never paste production credentials into any web page.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Why is the output longer than the input?</h3>
+          <p>Base64 encodes 3 bytes as 4 characters, so output is roughly 33% larger, plus padding. That overhead is why Base64 is not used for large binary payloads when a binary-safe transport is available.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="procta">
+      <h2>More tools, no ads, no tracking</h2>
+      <p>APILens Pro is a one-time $19 licence that unlocks large-file mode (up to 20 MB) across the JSON tools and keeps this project independent of advertising.</p>
+      <a class="btn primary" href="/apilens/#pricing">Get APILens Pro &#8212; $19 once</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>100% local &#183; no analytics &#183; no ads &#183; <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> &#183; Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+  <script src="/apilens/static/formatter.js"></script>
+  <script src="/apilens/static/tools.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var out = $('b64-out'), meta = $('meta'), last = '';
+      var stripPad = false, urlSafe = false;
+
+      function bytesToB64(bytes, safe, noPad) {
+        var bin = '';
+        for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        var b = btoa(bin);
+        if (safe) b = b.replace(/\+/g, '-').replace(/\//g, '_');
+        if (noPad) b = b.replace(/=+$/, '');
+        return b;
+      }
+      function b64ToBytes(s) {
+        var t = s.replace(/\s+/g, '').replace(/-/g, '+').replace(/_/g, '/');
+        while (t.length % 4) t += '=';
+        var bin = atob(t), arr = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+        return arr;
+      }
+      function show(text, note) {
+        last = text;
+        out.innerHTML = '';
+        var pre = document.createElement('pre');
+        pre.textContent = text;
+        out.appendChild(pre);
+        meta.textContent = note || '';
+      }
+      function encode() {
+        var v = $('b64-in').value;
+        if (!v) { out.innerHTML = '<div class="empty">Enter text to encode.</div>'; return; }
+        var bytes = new TextEncoder().encode(v);
+        show(bytesToB64(bytes, urlSafe, stripPad), bytes.length + ' bytes in &#8594; ' + bytesToB64(bytes, urlSafe, stripPad).length + ' chars out');
+      }
+      function decode() {
+        var v = $('b64-in').value.trim();
+        if (!v) { out.innerHTML = '<div class="empty">Paste Base64 to decode.</div>'; return; }
+        try {
+          var bytes = b64ToBytes(v);
+          show(new TextDecoder('utf-8', { fatal: false }).decode(bytes), bytes.length + ' bytes decoded');
+        } catch (e) {
+          out.innerHTML = '<div class="empty">Not valid Base64: ' + e.message + '</div>';
+        }
+      }
+      function basic() {
+        var v = $('b64-in').value.trim().replace(/^Basic\s+/i, '');
+        try {
+          var text = new TextDecoder('utf-8').decode(b64ToBytes(v));
+          var i = text.indexOf(':');
+          if (i < 0) { show(text, 'decoded (no colon found &#8212; not user:password)'); return; }
+          show('username: ' + text.slice(0, i) + '\npassword: ' + text.slice(i + 1) + '\n\n(decoded locally &#8212; nothing sent)', 'Basic auth decoded');
+        } catch (e) {
+          out.innerHTML = '<div class="empty">Not valid Base64: ' + e.message + '</div>';
+        }
+      }
+      $('btn-encode').addEventListener('click', encode);
+      $('btn-decode').addEventListener('click', decode);
+      $('btn-basic').addEventListener('click', basic);
+      $('btn-pad').addEventListener('click', function () { stripPad = !stripPad; this.textContent = 'Strip padding: ' + (stripPad ? 'on' : 'off'); });
+      $('btn-url').addEventListener('click', function () { urlSafe = !urlSafe; this.textContent = 'URL-safe: ' + (urlSafe ? 'on' : 'off'); });
+      $('btn-copy').addEventListener('click', function () {
+        if (!last) return;
+        navigator.clipboard.writeText(last).then(function () { meta.textContent = 'copied'; });
+      });
+    })();
+  </script>
+</body>
+</html>
