@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON Validator — Check &amp; Validate JSON Online | APILens</title>
+  <meta name="description" content="Free online JSON validator. Paste JSON to check for syntax errors and get the exact line and column of the problem, or confirm it's valid and view it as a tree. 100% in your browser — no upload, no account.">
+  <link rel="canonical" href="https://haswell119.github.io/apilens/json-validator">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="JSON Validator — Check &amp; Validate JSON Online">
+  <meta property="og:description" content="Free, private JSON validator. Find the exact line and column of any JSON syntax error, or confirm your JSON is valid — entirely in your browser.">
+  <meta property="og:url" content="https://haswell119.github.io/apilens/json-validator">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JSON Validator — Check &amp; Validate JSON Online">
+  <meta name="twitter:description" content="Free, private, ad-free JSON validator. Paste JSON, get the exact line and column of any error.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens JSON Validator",
+    "url": "https://haswell119.github.io/apilens/json-validator",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Free online JSON validator that reports the exact line and column of JSON syntax errors entirely in the browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/apilens/static/icons/icon48.png">
+  <link rel="stylesheet" href="/apilens/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .jv-tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .jv-tool textarea { min-height: 160px; border: none; border-radius: 0; }
+    .jv-bar { display: flex; gap: 8px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .jv-bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 90px; }
+    .out .empty { color: var(--muted); }
+    .ok { color: #4ade80; font-weight: 600; font-size: 15px; margin-bottom: 12px; }
+    .errbox { background: #1a0e0e; border: 1px solid #7f1d1d; border-radius: 8px; padding: 12px 14px; }
+    .errbox .msg { color: #fca5a5; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; word-break: break-word; }
+    .errbox .loc { color: var(--muted); font-size: 12px; margin-top: 6px; }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/apilens/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/apilens/">Full tool ↗</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
+
+  <div class="page">
+    <nav class="toolnav" aria-label="Tools">
+      <a href="/apilens/">JSON formatter</a>
+      <a href="/apilens/json-validator" class="active">JSON validator</a>
+      <a href="/apilens/jwt-decoder">JWT decoder</a>
+      <a href="/apilens/json-diff">JSON diff</a>
+      <a href="/apilens/jsonpath">JSONPath</a>
+      <a href="/apilens/xml-formatter">XML formatter</a>
+      <a href="/apilens/json-to-csv">JSON to CSV</a>
+    </nav>
+
+    <h1>JSON Validator — check any JSON for errors</h1>
+    <p class="lede">Paste JSON below to validate it. If it's valid you'll see it rendered as a tree; if not, you'll get the <strong>exact line and column</strong> of the first syntax error. Validation runs entirely in your browser — your data never leaves your machine.</p>
+
+    <div class="jv-tool">
+      <textarea id="jv-input" spellcheck="false" placeholder='Paste JSON here — e.g. { "name": "Ada", "age": 36 }'></textarea>
+      <div class="jv-bar">
+        <button id="btn-validate" class="btn primary">Validate</button>
+        <button id="btn-sample-valid" class="btn">Valid sample</button>
+        <button id="btn-sample-invalid" class="btn">Invalid sample</button>
+        <button id="btn-clear" class="btn">Clear</button>
+        <span class="meta" id="meta"></span>
+      </div>
+      <div class="out" id="out"><div class="empty">Validation result appears here.</div></div>
+    </div>
+
+    <div class="section">
+      <h2>JSON validator — frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>How does this JSON validator find the error line and column?</h3>
+          <p>It uses your browser's own JSON parser, which reports the character position of the first error. APILens converts that offset into a human-readable <em>line:column</em> location and shows the parser's message alongside it.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What are the most common JSON errors?</h3>
+          <p>Trailing commas, missing commas between items, single quotes instead of double quotes, unquoted keys, and comments (<code>//</code> or <code>/* */</code>). JSON does not allow comments, so this validator flags them.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is my JSON uploaded anywhere?</h3>
+          <p>No. Validation runs 100% locally in your browser — nothing is uploaded, logged or transmitted. APILens is MIT open source with no ads and no analytics.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What counts as "valid" JSON?</h3>
+          <p>JSON (RFC 8259) must be valid UTF-8 and be one of: an object <code>{ }</code>, an array <code>[ ]</code>, a string, a number, <code>true</code>, <code>false</code>, or <code>null</code>. Keys and strings use double quotes.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What's the difference between validation and formatting?</h3>
+          <p>Validation checks correctness. Formatting (pretty-print or minify) rearranges whitespace. Use the <a href="/apilens/">JSON formatter</a> to beautify valid JSON, and this validator when you suspect an error.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does this work with large JSON files?</h3>
+          <p>Yes — up to about 20k nodes (2 MB) in the free tier. For large files, the <a href="/apilens/">APILens Pro</a> tier raises the limit to 200k nodes / 20 MB and includes JSONPath and JSON diff.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>100% local · no analytics · no ads · <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> · Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+
+  <script src="/apilens/static/formatter.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var input = $('jv-input'), out = $('out'), meta = $('meta');
+
+      function findError(text) {
+        try { JSON.parse(text); return null; }
+        catch (e) {
+          var m = /position\s+(\d+)/i.exec(e.message || '');
+          var pos = m ? parseInt(m[1], 10) : null;
+          var line = null, col = null;
+          if (pos !== null && isFinite(pos)) {
+            line = 1; col = 1;
+            for (var i = 0; i < pos && i < text.length; i++) {
+              if (text[i] === '\n') { line++; col = 1; } else { col++; }
+            }
+          }
+          return { message: e.message, line: line, col: col };
+        }
+      }
+
+      function validate() {
+        var text = input.value;
+        out.innerHTML = '';
+        meta.textContent = '';
+        if (!text.trim()) { out.appendChild(APILens.el('div', 'empty', 'Paste JSON above to validate it.')); return; }
+        var err = findError(text);
+        if (err === null) {
+          var ok = APILens.el('div', 'ok', '✓ Valid JSON');
+          out.appendChild(ok);
+          var treeWrap = document.createElement('div');
+          APILens.render(treeWrap, text, 'json');
+          out.appendChild(treeWrap);
+          meta.textContent = 'Valid JSON · ' + text.length + ' chars';
+        } else {
+          var box = APILens.el('div', 'errbox');
+          box.appendChild(APILens.el('div', 'msg', '✗ ' + err.message));
+          var loc = (err.line !== null)
+            ? 'Line ' + err.line + ', column ' + err.col
+            : 'Error position not reported by this browser';
+          box.appendChild(APILens.el('div', 'loc', loc));
+          out.appendChild(box);
+          meta.textContent = 'Invalid JSON · ' + text.length + ' chars';
+        }
+      }
+
+      $('btn-validate').addEventListener('click', validate);
+      $('btn-sample-valid').addEventListener('click', function () {
+        input.value = JSON.stringify({ name: 'Ada Lovelace', born: 1815, fields: ['math', 'computing'], alive: false }, null, 2);
+        validate();
+      });
+      $('btn-sample-invalid').addEventListener('click', function () {
+        input.value = '{\n  "name": "Ada",\n  "born": 1815,\n  "fields": ["math", "computing",],\n}';
+        validate();
+      });
+      $('btn-clear').addEventListener('click', function () { input.value = ''; out.innerHTML = ''; meta.textContent = ''; });
+      input.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') validate(); });
+    })();
+  </script>
+</body>
+</html>

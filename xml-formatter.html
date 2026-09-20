@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XML Formatter — Beautify, Minify &amp; View XML Online | APILens</title>
+  <meta name="description" content="Free online XML formatter. Paste XML to pretty-print (indent) it, minify it, and view it as a collapsible tree. Runs 100% in your browser — no upload, no account.">
+  <link rel="canonical" href="https://haswell119.github.io/apilens/xml-formatter">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="XML Formatter — Beautify, Minify &amp; View XML Online">
+  <meta property="og:description" content="Free, private XML formatter. Pretty-print or minify XML and view it as a collapsible tree, entirely in your browser.">
+  <meta property="og:url" content="https://haswell119.github.io/apilens/xml-formatter">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="XML Formatter — Beautify, Minify &amp; View XML Online">
+  <meta name="twitter:description" content="Free, private, ad-free XML formatter. Indent or minify XML and explore it as a tree.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens XML Formatter",
+    "url": "https://haswell119.github.io/apilens/xml-formatter",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Free online XML formatter that pretty-prints or minifies XML and renders it as a collapsible tree entirely in the browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/apilens/static/icons/icon48.png">
+  <link rel="stylesheet" href="/apilens/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .xf-tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .xf-tool textarea { min-height: 160px; border: none; border-radius: 0; }
+    .xf-bar { display: flex; gap: 8px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .xf-bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 90px; }
+    .out .empty { color: var(--muted); }
+    .out pre { background: #0b1322; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; overflow: auto; margin: 0; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.55; }
+    .out .errbox { background: #1a0e0e; border: 1px solid #7f1d1d; border-radius: 8px; padding: 12px 14px; color: #fca5a5; font-size: 13px; }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/apilens/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/apilens/">Full tool ↗</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
+
+  <div class="page">
+    <nav class="toolnav" aria-label="Tools">
+      <a href="/apilens/">JSON formatter</a>
+      <a href="/apilens/json-validator">JSON validator</a>
+      <a href="/apilens/jwt-decoder">JWT decoder</a>
+      <a href="/apilens/json-diff">JSON diff</a>
+      <a href="/apilens/jsonpath">JSONPath</a>
+      <a href="/apilens/xml-formatter" class="active">XML formatter</a>
+      <a href="/apilens/json-to-csv">JSON to CSV</a>
+    </nav>
+
+    <h1>XML Formatter — beautify or minify XML</h1>
+    <p class="lede">Paste XML to <strong>pretty-print</strong> it with indentation, <strong>minify</strong> it to one line, or explore it as a <strong>collapsible tree</strong>. Everything runs locally in your browser.</p>
+
+    <div class="xf-tool">
+      <textarea id="xf-input" spellcheck="false" placeholder='Paste XML here — e.g. &lt;catalog&gt;&lt;book id="1"&gt;&lt;title&gt;Ada&lt;/title&gt;&lt;/book&gt;&lt;/catalog&gt;'></textarea>
+      <div class="xf-bar">
+        <button id="btn-format" class="btn primary">Format</button>
+        <button id="btn-minify" class="btn">Minify</button>
+        <button id="btn-tree" class="btn">Tree view</button>
+        <button id="btn-sample" class="btn">Sample</button>
+        <button id="btn-clear" class="btn">Clear</button>
+        <span class="meta" id="meta"></span>
+      </div>
+      <div class="out" id="out"><div class="empty">Formatted XML appears here.</div></div>
+    </div>
+
+    <div class="section">
+      <h2>XML formatter — frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>What does an XML formatter do?</h3>
+          <p>It rewrites XML with consistent indentation so nested elements are easy to read. Minify does the opposite — it strips whitespace between tags to shrink the file for transfer or storage.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is my XML uploaded to a server?</h3>
+          <p>No. Formatting and minifying run 100% in your browser. Your XML never leaves your machine — APILens has no analytics and no ads.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does it validate the XML?</h3>
+          <p>It checks well-formedness (matching tags, no parser errors) before formatting. If the XML is malformed, you'll see an error instead of a result. Use a schema validator for DTD/XSD conformance checks.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Will formatting change my data?</h3>
+          <p>No. Only the whitespace <em>between</em> elements changes; element text content, attributes and structure are preserved exactly. Mixed content (text between nested elements) is kept on its own line.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I convert XML to JSON here?</h3>
+          <p>The tree view reads XML as a nested structure so you can inspect it. For API work, APILens also handles <a href="/apilens/">JSON formatting</a>, <a href="/apilens/json-diff">JSON diff</a> and <a href="/apilens/jsonpath">JSONPath</a>.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is there a Chrome extension?</h3>
+          <p>Yes — APILens ships as an open-source Chrome (MV3) extension. Both are MIT-licensed on <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>100% local · no analytics · no ads · <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> · Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+
+  <script src="/apilens/static/formatter.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var input = $('xf-input'), out = $('out'), meta = $('meta');
+
+      function parseXml(text) {
+        var doc = new DOMParser().parseFromString(text, 'text/xml');
+        if (doc.getElementsByTagName('parsererror').length) {
+          var pe = doc.getElementsByTagName('parsererror')[0];
+          return { error: 'Invalid XML: ' + (pe.textContent || 'parser error').trim().split('\n')[0] };
+        }
+        return { doc: doc };
+      }
+
+      function formatXml(xml) {
+        var formatted = '', indent = '';
+        var tab = '  ';
+        var parts = xml.replace(/>\s*</g, '><').split(/></);
+        for (var i = 0; i < parts.length; i++) {
+          var node = parts[i];
+          if (i > 0) node = '<' + node;
+          if (i < parts.length - 1) node = node + '>';
+          if (/^<\//.test(node)) indent = indent.substring(tab.length); // closing tag
+          formatted += indent + node + '\n';
+          if (/^<[^!?/][^>]*[^/]>$/.test(node.trim()) && !/^<[^>]*\/>/.test(node.trim())) indent += tab;
+        }
+        return formatted.replace(/^\n+|\n+$/g, '');
+      }
+
+      function minifyXml(xml) {
+        return xml
+          .replace(/>\s+</g, '><')
+          .replace(/\s{2,}/g, ' ')
+          .replace(/<!--[\s\S]*?-->/g, function (c) { return c.trim(); })
+          .trim();
+      }
+
+      function renderError(msg) {
+        out.innerHTML = '';
+        out.appendChild(APILens.el('div', 'errbox', msg));
+        meta.textContent = 'Invalid XML';
+      }
+
+      function showText(text) {
+        out.innerHTML = '';
+        var pre = document.createElement('pre');
+        pre.textContent = text;
+        out.appendChild(pre);
+      }
+
+      $('btn-format').addEventListener('click', function () {
+        var t = input.value;
+        if (!t.trim()) return;
+        var r = parseXml(t);
+        if (r.error) return renderError(r.error);
+        showText(formatXml(t));
+        meta.textContent = 'Formatted · ' + t.length + ' chars';
+      });
+      $('btn-minify').addEventListener('click', function () {
+        var t = input.value;
+        if (!t.trim()) return;
+        var r = parseXml(t);
+        if (r.error) return renderError(r.error);
+        var m = minifyXml(t);
+        showText(m);
+        meta.textContent = 'Minified · ' + t.length + ' → ' + m.length + ' chars';
+      });
+      $('btn-tree').addEventListener('click', function () {
+        var t = input.value;
+        if (!t.trim()) return;
+        var r = parseXml(t);
+        if (r.error) return renderError(r.error);
+        out.innerHTML = '';
+        APILens.render(out, t, 'xml');
+        meta.textContent = 'Tree view · ' + t.length + ' chars';
+      });
+      $('btn-sample').addEventListener('click', function () {
+        input.value = '<?xml version="1.0" encoding="UTF-8"?>\n<catalog>\n<book id="bk101"><author>Gambardella, Matthew</author><title>XML Developer\'s Guide</title><genre>Computer</genre><price>44.95</price></book>\n<book id="bk102"><author>Ralls, Kim</author><title>Midnight Rain</title><genre>Fantasy</genre><price>5.95</price></book>\n</catalog>';
+        $('btn-format').click();
+      });
+      $('btn-clear').addEventListener('click', function () { input.value = ''; out.innerHTML = '<div class="empty">Formatted XML appears here.</div>'; meta.textContent = ''; });
+      input.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') $('btn-format').click(); });
+    })();
+  </script>
+</body>
+</html>

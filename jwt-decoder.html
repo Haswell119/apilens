@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JWT Decoder — Decode JSON Web Tokens Online | APILens</title>
+  <meta name="description" content="Free online JWT decoder. Paste a JSON Web Token to decode its header and payload, see claims (exp, iat, sub, aud) as readable dates, and spot expired tokens. 100% in your browser — no upload, no account.">
+  <link rel="canonical" href="https://haswell119.github.io/apilens/jwt-decoder">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="JWT Decoder — Decode JSON Web Tokens Online">
+  <meta property="og:description" content="Free, private JWT decoder that runs entirely in your browser. Decode the header, payload and signature; see exp/iat/aud claims as readable dates.">
+  <meta property="og:url" content="https://haswell119.github.io/apilens/jwt-decoder">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JWT Decoder — Decode JSON Web Tokens Online">
+  <meta name="twitter:description" content="Free, private, ad-free JWT decoder. Paste a token, read its claims as dates.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens JWT Decoder",
+    "url": "https://haswell119.github.io/apilens/jwt-decoder",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Free online JWT decoder that decodes JSON Web Token header, payload and signature entirely in the browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/apilens/static/icons/icon48.png">
+  <link rel="stylesheet" href="/apilens/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .jwt-tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .jwt-tool textarea { min-height: 110px; border: none; border-radius: 0; }
+    .jwt-bar { display: flex; gap: 8px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .jwt-bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 120px; }
+    .out .empty { color: var(--muted); }
+    .claims { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 14px; }
+    @media (max-width: 640px) { .claims { grid-template-columns: 1fr; } }
+    .claim { background: #0b1322; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+    .claim .k { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .4px; }
+    .claim .v { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; word-break: break-word; }
+    .claim.warn { border-color: var(--warn); }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/apilens/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/apilens/">Full tool ↗</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
+
+  <div class="page">
+    <nav class="toolnav" aria-label="Tools">
+      <a href="/apilens/">JSON formatter</a>
+      <a href="/apilens/json-validator">JSON validator</a>
+      <a href="/apilens/jwt-decoder" class="active">JWT decoder</a>
+      <a href="/apilens/json-diff">JSON diff</a>
+      <a href="/apilens/jsonpath">JSONPath</a>
+      <a href="/apilens/xml-formatter">XML formatter</a>
+      <a href="/apilens/json-to-csv">JSON to CSV</a>
+    </nav>
+
+    <h1>JWT Decoder — decode any JSON Web Token</h1>
+    <p class="lede">Paste a JWT to read its <strong>header</strong>, <strong>payload</strong> and <strong>signature</strong>. Claims like <code>exp</code>, <code>iat</code>, <code>sub</code> and <code>aud</code> are shown as readable dates. Everything is decoded locally in your browser — your token never leaves your machine.</p>
+
+    <div class="jwt-tool">
+      <textarea id="jwt-input" spellcheck="false" placeholder="Paste a JWT — e.g. eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNryP4J3jVmNHl0w5N_XgL0n3I9PlFUP0THsR8U"></textarea>
+      <div class="jwt-bar">
+        <button id="btn-decode" class="btn primary">Decode</button>
+        <button id="btn-sample" class="btn">Sample</button>
+        <button id="btn-clear" class="btn">Clear</button>
+        <span class="meta" id="meta"></span>
+      </div>
+      <div class="out" id="out"><div class="empty">Decoded header, payload and signature appear here.</div></div>
+    </div>
+
+    <div class="section">
+      <h2>JWT decoder — frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Does this JWT decoder verify the signature?</h3>
+          <p>No. A JWT's header and payload are only Base64URL-encoded, not encrypted, so anyone holding the token can read them. Verifying the signature requires the signing secret or public key, which this client-side decoder does not ask for. Watch for <code>alg: none</code> — it's a classic vulnerability flag.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is it safe to paste my JWT here?</h3>
+          <p>Yes — decoding happens 100% in your browser; nothing is uploaded, logged or transmitted. Still, avoid pasting production tokens into any shared screen.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What do exp and iat mean?</h3>
+          <p><code>exp</code> is the expiration time and <code>iat</code> the issued-at time, both as Unix timestamps in seconds. This decoder converts them to readable dates and flags a token whose <code>exp</code> has already passed.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Why can anyone read my JWT payload?</h3>
+          <p>JWTs are signed, not encrypted. The payload is only Base64URL-encoded, so it is readable by design — never put secrets, passwords or PII in a JWT payload.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is a JWT?</h3>
+          <p>A JSON Web Token (RFC 7519) is three Base64URL parts joined by dots: <code>header.payload.signature</code>. The header names the algorithm, the payload holds the claims, and the signature verifies the token hasn't been tampered with.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is there a Chrome extension?</h3>
+          <p>Yes — APILens also ships as an open-source Chrome (MV3) extension. Both are MIT-licensed on <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub</a>, and the <a href="/apilens/">full tool</a> adds JSON formatting, diff and JSONPath.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>100% local · no analytics · no ads · <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> · Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+
+  <script src="/apilens/static/formatter.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var input = $('jwt-input'), out = $('out'), meta = $('meta');
+
+      function fmtDate(sec) {
+        var n = Number(sec);
+        if (!isFinite(n)) return null;
+        return new Date(n * 1000).toISOString();
+      }
+
+      function decode() {
+        var token = input.value.trim();
+        out.innerHTML = '';
+        meta.textContent = '';
+        if (!token) { out.appendChild(APILens.el('div', 'empty', 'Paste a JWT above to decode it.')); return; }
+        if (!APILens.isJWT(token)) { out.appendChild(APILens.el('div', 'empty', 'Not a valid JWT. Expected header.payload.signature.')); return; }
+        var d = APILens.decodeJWT(token);
+        if (d.error) { out.appendChild(APILens.el('div', 'empty', d.error)); return; }
+
+        // claims strip (readable dates + expiry flag)
+        var grid = document.createElement('div');
+        grid.className = 'claims';
+        var payload = d.payload || {};
+        var rows = [['alg', (d.header && d.header.alg) || '—'], ['typ', (d.header && d.header.typ) || '—']];
+        [['sub', 'subject'], ['iss', 'issuer'], ['aud', 'audience'], ['exp', 'expires'], ['iat', 'issued'], ['nbf', 'not before'], ['jti', 'id']].forEach(function (pair) {
+          if (payload[pair[0]] !== undefined) rows.push([pair[0], payload[pair[0]]]);
+        });
+        rows.forEach(function (r) {
+          var box = document.createElement('div');
+          box.className = 'claim';
+          var val = r[1];
+          if (r[0] === 'exp' || r[0] === 'iat' || r[0] === 'nbf') {
+            var iso = fmtDate(val);
+            if (iso) val = val + '  (' + iso + ')';
+          }
+          if (r[0] === 'exp') {
+            var expired = Date.now() / 1000 > Number(payload.exp);
+            if (expired) { box.className += ' warn'; val += '  ⚠ expired'; }
+          }
+          var k = document.createElement('div'); k.className = 'k'; k.textContent = r[0];
+          var v = document.createElement('div'); v.className = 'v'; v.textContent = val;
+          box.appendChild(k); box.appendChild(v);
+          grid.appendChild(box);
+        });
+        out.appendChild(grid);
+
+        // tree render of header/payload/signature
+        var treeWrap = document.createElement('div');
+        APILens.render(treeWrap, JSON.stringify({ header: d.header, payload: d.payload, signature: d.signature }), 'json');
+        out.appendChild(treeWrap);
+        meta.textContent = 'JWT decoded · ' + token.length + ' chars';
+      }
+
+      function sample() {
+        function b64url(obj) {
+          var s = JSON.stringify(obj);
+          var b = btoa(unescape(encodeURIComponent(s)));
+          return b.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        }
+        var header = { alg: 'HS256', typ: 'JWT' };
+        var payload = {
+          sub: '1234567890', name: 'Ada Lovelace', role: 'admin',
+          iat: 1700000000, exp: 1731536000, aud: 'apilens.example', iss: 'auth.example'
+        };
+        var sig = 'dozjgNryP4J3jVmNHl0w5N_XgL0n3I9PlFUP0THsR8U';
+        input.value = b64url(header) + '.' + b64url(payload) + '.' + sig;
+        decode();
+      }
+
+      $('btn-decode').addEventListener('click', decode);
+      $('btn-sample').addEventListener('click', sample);
+      $('btn-clear').addEventListener('click', function () { input.value = ''; out.innerHTML = ''; meta.textContent = ''; });
+      input.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') decode(); });
+    })();
+  </script>
+</body>
+</html>
