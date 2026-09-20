@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON to YAML Converter — Free Online Tool | APILens</title>
+  <meta name="description" content="Free JSON to YAML converter. Paste JSON and get clean, correctly indented YAML with proper quoting for strings, booleans, nulls and nested arrays. 100% in your browser — nothing is uploaded.">
+  <link rel="canonical" href="https://haswell119.github.io/apilens/json-to-yaml">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APILens">
+  <meta property="og:title" content="JSON to YAML Converter — Free Online Tool | APILens">
+  <meta property="og:description" content="Free JSON to YAML converter. Paste JSON and get clean, correctly indented YAML with proper quoting for strings, booleans, nulls and nested arrays. 100% in your browser — nothing is uploaded.">
+  <meta property="og:url" content="https://haswell119.github.io/apilens/json-to-yaml">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JSON to YAML Converter — Free Online Tool | APILens">
+  <meta name="twitter:description" content="Free JSON to YAML converter. Paste JSON and get clean, correctly indented YAML with proper quoting for strings, booleans, nulls and nested arrays. 100% in your browser — nothing is uploaded.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APILens JSON to YAML Converter",
+    "url": "https://haswell119.github.io/apilens/json-to-yaml",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Free JSON to YAML converter. Paste JSON and get clean, correctly indented YAML with proper quoting for strings, booleans, nulls and nested arrays. 100% in your browser — nothing is uploaded.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Meridian Digital" }
+  }
+  </script>
+  <link rel="icon" href="/apilens/static/icons/icon48.png">
+  <link rel="stylesheet" href="/apilens/static/style.css">
+  <style>
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 24px 48px; }
+    .page h1 { font-size: 30px; margin: 32px 0 8px; letter-spacing: -0.5px; }
+    .page .lede { color: var(--muted); font-size: 16px; max-width: 720px; margin: 0 0 24px; }
+    .tool { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .tool-panes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+    @media (max-width: 700px) { .tool-panes { grid-template-columns: 1fr; } }
+    .tool .lab { color: var(--muted); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .tool textarea { min-height: 220px; }
+    .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .bar .meta { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .out { padding: 14px; min-height: 120px; }
+    .out .empty { color: var(--muted); }
+    .section { margin-top: 32px; }
+    .section h2 { font-size: 20px; margin: 0 0 14px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-item h3 { font-size: 15px; margin: 0 0 8px; }
+    .faq-item p { opacity: .85; margin: 0; line-height: 1.6; font-size: 14px; }
+    .procta { margin-top: 32px; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 20px 22px; }
+    .procta h2 { font-size: 19px; margin: 0 0 8px; }
+    .procta p { color: var(--muted); font-size: 15px; margin: 0 0 14px; }
+    .toolnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+    .toolnav a { font-size: 13px; text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .toolnav a:hover, .toolnav a.active { color: var(--text); border-color: var(--accent); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    .page pre, .out pre { margin: 0; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; white-space: pre; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/apilens/static/icons/icon48.png" alt="" width="26" height="26">
+      <span>APILens</span>
+      <span class="badge">open source</span>
+    </div>
+    <div class="top-actions">
+      <a class="gh-link" href="/apilens/">Full tool &#8599;</a>
+      <a class="gh-link" href="/apilens/#pricing">Pro &#8212; $19 once</a>
+      <a class="gh-link" href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </header>
+
+  <div class="page">
+<nav class="toolnav" aria-label="Tools">
+      <a href="/apilens/">JSON formatter</a>
+      <a href="/apilens/json-validator">JSON validator</a>
+      <a href="/apilens/jwt-decoder">JWT decoder</a>
+      <a href="/apilens/json-diff">JSON diff</a>
+      <a href="/apilens/jsonpath">JSONPath tester</a>
+      <a href="/apilens/xml-formatter">XML formatter</a>
+      <a href="/apilens/json-to-csv">JSON to CSV</a>
+      <a href="/apilens/xml-to-json">XML to JSON</a>
+      <a href="/apilens/json-to-yaml">JSON to YAML</a>
+      <a href="/apilens/json-to-typescript">JSON to TypeScript</a>
+      <a href="/apilens/base64-encoder">Base64 encode / decode</a>
+      <a href="/apilens/unix-timestamp-converter">Unix timestamp converter</a>
+    </nav>
+
+    <h1>JSON to YAML Converter — Free Online Tool | APILens</h1>
+    <p class="lede">Paste JSON, get YAML. Correct two-space indentation, block or flow style for short arrays, and safe quoting for strings that would otherwise be read as numbers or booleans. Runs entirely in your browser.</p>
+
+    <div class="tool">
+      <div class="tool-panes">
+        <div>
+          <div class="lab">JSON input</div>
+          <textarea id="json-in" spellcheck="false" placeholder='{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": { "name": "web", "labels": { "app": "web" } },
+  "spec": { "ports": [ { "port": 80, "targetPort": 8080 } ] }
+}'></textarea>
+        </div>
+        <div>
+          <div class="lab">YAML output</div>
+          <div class="out" id="yaml-out"><div class="empty">Converted YAML appears here.</div></div>
+        </div>
+      </div>
+      <div class="bar">
+        <button id="btn-convert" class="btn primary">Convert to YAML</button>
+        <select id="indent" class="btn" style="padding:6px 10px;">
+          <option value="2" selected>Indent: 2 spaces</option>
+          <option value="4">Indent: 4 spaces</option>
+        </select>
+        <button id="btn-flow" class="btn">Flow style: off</button>
+        <button id="btn-sample" class="btn">Sample</button>
+        <button id="btn-copy" class="btn">Copy YAML</button>
+        <span class="meta" id="meta"></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>How the converter keeps your YAML valid</h2>
+      <table>
+        <tr><th>JSON value</th><th>YAML emitted</th><th>Why</th></tr>
+        <tr><td><code>"2.0"</code></td><td><code>'2.0'</code></td><td>Quoted so it stays a string, not a float</td></tr>
+        <tr><td><code>"yes"</code>, <code>"no"</code>, <code>"on"</code>, <code>"off"</code></td><td>quoted</td><td>YAML 1.1 would read them as booleans</td></tr>
+        <tr><td><code>"null"</code></td><td><code>'null'</code></td><td>Otherwise parsed as a null value</td></tr>
+        <tr><td><code>"#hash"</code>, <code>"a: b"</code></td><td>quoted</td><td>Would start a comment or a mapping</td></tr>
+        <tr><td>long strings</td><td>block scalar <code>|-</code></td><td>Multi-line values stay readable</td></tr>
+        <tr><td>arrays of numbers</td><td><code>[80, 443]</code></td><td>Flow style reads better for short scalar lists</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Is the JSON to YAML conversion private?</h3>
+          <p>Completely. Serialisation happens in JavaScript in this tab. There is no server call, no analytics and no logging &mdash; which matters for Kubernetes manifests, CI configs and anything holding a token.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is the output valid YAML 1.2?</h3>
+          <p>Yes. Indentation is consistent, keys are quoted when they contain characters that would change their meaning, and strings that YAML would otherwise coerce to numbers or booleans are single-quoted.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I use it for Kubernetes or CI configuration?</h3>
+          <p>That is the most common use. Paste the JSON you got from <code>kubectl get -o json</code> or an API response and you get a manifest-shaped YAML scaffold to edit. Generated manifests should always be reviewed before you apply them.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Why are some strings wrapped in quotes in the output?</h3>
+          <p>Because YAML is not JSON: <code>yes</code>, <code>no</code>, <code>on</code>, <code>off</code>, <code>null</code> and numeric-looking strings have special meanings. Quoting them preserves the exact value you had in JSON.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does it convert YAML back to JSON?</h3>
+          <p>This page is one-way (JSON &rarr; YAML). For structure comparison the <a href="/apilens/json-diff">JSON diff</a> and <a href="/apilens/json-validator">JSON validator</a> are the more useful neighbours.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is the size limit?</h3>
+          <p>Around 2 MB in the free version. APILens Pro raises the cap to 20 MB and adds large-file mode.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="procta">
+      <h2>Need 20 MB payloads and no ads, forever?</h2>
+      <p>APILens Pro is a one-time $19 licence: large-file mode up to 20 MB, JSONPath query and diff on bigger documents, and it keeps an ad-free open-source tool alive.</p>
+      <a class="btn primary" href="/apilens/#pricing">Get APILens Pro &#8212; $19 once</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>100% local &#183; no analytics &#183; no ads &#183; <a href="https://github.com/Haswell119/apilens" target="_blank" rel="noopener">MIT open source</a> &#183; Built by <strong>Meridian Digital</strong>.</p>
+  </footer>
+  <script src="/apilens/static/formatter.js"></script>
+  <script src="/apilens/static/tools.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var out = $('yaml-out'), meta = $('meta'), last = '', flow = false;
+
+      function needsQuote(s) {
+        if (s === '') return true;
+        if (/^[\s]|[\s]$/.test(s)) return true;
+        if (/^(true|false|yes|no|on|off|null|~|Null|NULL|True|False|Yes|No|On|Off)$/.test(s)) return true;
+        if (/^[-+]?(\d[\d_]*)?(\.[\d_]*)?([eE][-+]?\d+)?$/.test(s) && s !== '') return true;
+        if (/^[-+]?\.(inf|Inf|INF)$/.test(s) || /^\.(nan|NaN|NAN)$/.test(s)) return true;
+        if (/^[-?:,\[\]{}#&*!|>'"%@`]/.test(s)) return true;
+        if (/: /.test(s) || / #/.test(s)) return true;
+        if (/[\n\r\t]/.test(s)) return true;
+        return false;
+      }
+
+      function scalar(v) {
+        if (v === null) return 'null';
+        if (typeof v === 'boolean') return v ? 'true' : 'false';
+        if (typeof v === 'number') return Number.isFinite(v) ? String(v) : 'null';
+        var s = String(v);
+        if (/[\n\r]/.test(s)) return null;
+        if (needsQuote(s)) return "'" + s.replace(/'/g, "''") + "'";
+        return s;
+      }
+
+      function isScalar(v) { return v === null || typeof v !== 'object'; }
+
+      function dump(value, indent, ind) {
+        var pad = ' '.repeat(indent);
+        var lines = [];
+        var i, k, keys;
+        if (Array.isArray(value)) {
+          if (!value.length) return pad + '[]';
+          if (flow && value.every(isScalar)) {
+            return pad + '[' + value.map(function (x) { return scalar(x); }).join(', ') + ']';
+          }
+          for (i = 0; i < value.length; i++) {
+            var item = value[i];
+            if (isScalar(item)) {
+              lines.push(pad + '- ' + (scalar(item) === null ? '|-' : scalar(item)));
+            } else if (Array.isArray(item)) {
+              if (!item.length) { lines.push(pad + '- []'); }
+              else { lines.push(pad + '-' + dump(item, indent, ind).slice(indent)); }
+            } else {
+              keys = Object.keys(item);
+              if (!keys.length) { lines.push(pad + '- {}'); continue; }
+              var inner = dump(item, indent + ind, ind).split('\n');
+              inner[0] = pad + '- ' + inner[0].trim();
+              lines = lines.concat(inner);
+            }
+          }
+          return lines.join('\n');
+        }
+        keys = Object.keys(value);
+        if (!keys.length) return pad + '{}';
+        for (i = 0; i < keys.length; i++) {
+          k = keys[i];
+          var keyStr = needsQuote(k) ? "'" + k.replace(/'/g, "''") + "'" : k;
+          var v = value[k];
+          if (isScalar(v)) {
+            var sv = scalar(v);
+            if (sv === null) {
+              lines.push(pad + keyStr + ': |-');
+              String(v).replace(/\r\n/g, '\n').split('\n').forEach(function (ln) { lines.push(' '.repeat(indent + ind) + ln); });
+            } else {
+              lines.push(pad + keyStr + ': ' + sv);
+            }
+          } else if (Array.isArray(v)) {
+            if (!v.length) { lines.push(pad + keyStr + ': []'); }
+            else if (flow && v.every(isScalar)) { lines.push(pad + keyStr + ': [' + v.map(function (x) { return scalar(x); }).join(', ') + ']'); }
+            else { lines.push(pad + keyStr + ':'); lines.push(dump(v, indent + ind, ind)); }
+          } else {
+            if (!Object.keys(v).length) { lines.push(pad + keyStr + ': {}'); }
+            else { lines.push(pad + keyStr + ':'); lines.push(dump(v, indent + ind, ind)); }
+          }
+        }
+        return lines.join('\n');
+      }
+
+      function convert() {
+        out.innerHTML = '';
+        meta.textContent = '';
+        var src = $('json-in').value;
+        if (!src.trim()) { out.appendChild(el('div', 'empty', 'Paste some JSON and press Convert.')); return; }
+        var data;
+        try { data = JSON.parse(src); } catch (e) {
+          out.appendChild(el('div', 'empty', 'Invalid JSON: ' + e.message));
+          return;
+        }
+        var ind = parseInt($('indent').value, 10) || 2;
+        last = dump(data, 0, ind) + '\n';
+        var pre = document.createElement('pre');
+        pre.textContent = last;
+        out.appendChild(pre);
+        meta.textContent = last.split('\n').length - 1 + ' lines';
+      }
+
+      function el(tag, cls, txt) { var d = document.createElement(tag); if (cls) d.className = cls; d.textContent = txt; return d; }
+
+      $('btn-convert').addEventListener('click', convert);
+      $('indent').addEventListener('change', convert);
+      $('btn-flow').addEventListener('click', function () {
+        flow = !flow;
+        this.textContent = 'Flow style: ' + (flow ? 'on' : 'off');
+        convert();
+      });
+      $('btn-sample').addEventListener('click', function () {
+        $('json-in').value = JSON.stringify({
+          apiVersion: 'v1',
+          kind: 'Service',
+          metadata: { name: 'web', labels: { app: 'web', tier: 'yes' } },
+          spec: { type: 'ClusterIP', ports: [{ port: 80, targetPort: 8080, protocol: 'TCP' }], selector: { app: 'web' } }
+        }, null, 2);
+        convert();
+      });
+      $('btn-copy').addEventListener('click', function () {
+        if (!last) return;
+        navigator.clipboard.writeText(last).then(function () { meta.textContent = 'copied'; });
+      });
+    })();
+  </script>
+</body>
+</html>
